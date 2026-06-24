@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Griffiths Fixes — Video Game Repair | St. John's, NL</title>
-  <meta name="description" content="Premium video game and electronics repair in the Greater St. John's Area. Console cleaning, HDMI ports, drifting joysticks, and more.">
+  <title>CM Detailing — Premium Car Detailing | St. John's, NL</title>
+  <meta name="description" content="Premium car detailing in the Greater St. John's Area. Exterior wash, interior detailing, paint correction, ceramic coatings, and more.">
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -21,13 +21,13 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Rajdhani', 'system-ui', 'sans-serif'],
+            sans: ['Montserrat', 'system-ui', 'sans-serif'],
           },
           colors: {
             brand: {
-              dark: '#020617',
-              cyan: '#06b6d4',
-              purple: '#a855f7',
+              dark: '#0a0a0a',
+              gold: '#C9A227',
+              silver: '#a1a1aa',
             }
           },
           animation: {
@@ -49,15 +49,15 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background-color: #020617;
-      font-family: 'Rajdhani', system-ui, sans-serif;
+      background-color: #0a0a0a;
+      font-family: 'Montserrat', system-ui, sans-serif;
     }
 
     /* Hero grid pattern */
     .hero-grid {
       background-image:
-        linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(201, 162, 39, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201, 162, 39, 0.03) 1px, transparent 1px);
       background-size: 40px 40px;
     }
 
@@ -74,14 +74,14 @@
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .service-accordion.is-open {
-      border-color: rgba(6, 182, 212, 0.35);
-      box-shadow: 0 0 24px rgba(6, 182, 212, 0.08);
+      border-color: rgba(201, 162, 39, 0.35);
+      box-shadow: 0 0 24px rgba(201, 162, 39, 0.08);
     }
     .service-accordion-trigger {
       transition: background-color 0.2s ease;
     }
     .service-accordion-trigger:hover {
-      background-color: rgba(6, 182, 212, 0.04);
+      background-color: rgba(201, 162, 39, 0.04);
     }
     .service-accordion-chevron {
       transition: transform 0.3s ease;
@@ -114,8 +114,8 @@
     .form-input::placeholder { color: #64748b; }
     .form-input:focus {
       outline: none;
-      border-color: #06b6d4;
-      box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.3);
+      border-color: #C9A227;
+      box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.3);
     }
 
     /* Toast animations */
@@ -157,8 +157,8 @@
     .toast.toast-out {
       animation: toastOut 0.3s ease forwards;
     }
-    .toast-success { border-left: 3px solid #06b6d4; }
-    .toast-info { border-left: 3px solid #a855f7; }
+    .toast-success { border-left: 3px solid #C9A227; }
+    .toast-info { border-left: 3px solid #a1a1aa; }
     .toast-error { border-left: 3px solid #ef4444; }
 
     @keyframes toastIn {
@@ -183,7 +183,7 @@
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #0f172a; }
     ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+    ::-webkit-scrollbar-thumb:hover { background: #C9A227; }
 
     /* View transitions */
     .view-hidden { display: none !important; }
@@ -199,7 +199,7 @@
       transition: background-color 0.2s ease;
     }
     .service-item-row:hover {
-      background-color: rgba(6, 182, 212, 0.05);
+      background-color: rgba(201, 162, 39, 0.05);
     }
     .book-service-btn {
       transition: color 0.2s, background-color 0.2s, border-color 0.2s;
@@ -207,7 +207,7 @@
 
     /* Admin modal */
     .admin-modal-backdrop {
-      background: rgba(2, 6, 23, 0.85);
+      background: rgba(10, 10, 10, 0.85);
       backdrop-filter: blur(4px);
     }
     .message-preview-box {
@@ -234,28 +234,28 @@
         <div class="flex items-center justify-between h-16">
           <a href="#" class="flex items-center gap-2 group" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
             <span class="text-2xl font-bold tracking-tight">
-              Griffiths <span class="text-cyan-400 group-hover:text-cyan-300 transition">Fixes</span>
+              CM <span class="text-amber-400 group-hover:text-amber-300 transition">Detailing</span>
             </span>
           </a>
 
           <!-- Desktop Nav -->
           <nav class="hidden md:flex items-center gap-6">
-            <a href="#services" class="text-slate-300 hover:text-cyan-400 transition font-medium">Services</a>
-            <a href="#reviews" class="text-slate-300 hover:text-cyan-400 transition font-medium">Reviews</a>
-            <button type="button" class="admin-login-btn text-slate-500 hover:text-cyan-400 text-sm font-medium transition cursor-pointer bg-transparent border-none flex items-center gap-1.5">
+            <a href="#services" class="text-slate-300 hover:text-amber-400 transition font-medium">Services</a>
+            <a href="#reviews" class="text-slate-300 hover:text-amber-400 transition font-medium">Reviews</a>
+            <button type="button" class="admin-login-btn text-slate-500 hover:text-amber-400 text-sm font-medium transition cursor-pointer bg-transparent border-none flex items-center gap-1.5">
               <i class="fa-solid fa-lock text-xs"></i> Admin
             </button>
-            <a href="#book" class="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 text-slate-950 font-bold px-5 py-2.5 rounded-lg transition shadow-lg shadow-cyan-500/20">
-              <i class="fa-solid fa-wrench text-sm"></i> Book Repair
+            <a href="#book" class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold px-5 py-2.5 rounded-lg transition shadow-lg shadow-amber-500/20">
+              <i class="fa-solid fa-calendar-check text-sm"></i> Book Appointment
             </a>
           </nav>
 
           <!-- Mobile: Admin + Hamburger -->
           <div class="flex items-center gap-1 md:hidden">
-            <button type="button" class="admin-login-btn p-2.5 text-slate-500 hover:text-cyan-400 transition" title="Admin Login" aria-label="Admin Login">
+            <button type="button" class="admin-login-btn p-2.5 text-slate-500 hover:text-amber-400 transition" title="Admin Login" aria-label="Admin Login">
               <i class="fa-solid fa-lock text-lg"></i>
             </button>
-            <button id="mobile-menu-btn" class="p-2 text-slate-300 hover:text-cyan-400 transition" aria-label="Toggle menu">
+            <button id="mobile-menu-btn" class="p-2 text-slate-300 hover:text-amber-400 transition" aria-label="Toggle menu">
               <i class="fa-solid fa-bars text-xl" id="menu-icon-open"></i>
               <i class="fa-solid fa-xmark text-xl hidden" id="menu-icon-close"></i>
             </button>
@@ -265,13 +265,13 @@
         <!-- Mobile Nav Dropdown -->
         <nav id="mobile-menu" class="hidden md:hidden pb-4 border-t border-slate-800/60">
           <div class="flex flex-col gap-1 pt-3">
-            <a href="#services" class="mobile-nav-link px-3 py-3 rounded-lg text-slate-300 hover:bg-slate-800/60 hover:text-cyan-400 transition font-medium">Services</a>
-            <a href="#reviews" class="mobile-nav-link px-3 py-3 rounded-lg text-slate-300 hover:bg-slate-800/60 hover:text-cyan-400 transition font-medium">Reviews</a>
-            <button type="button" class="admin-login-btn mobile-nav-link w-full text-left px-3 py-3 rounded-lg text-slate-500 hover:bg-slate-800/60 hover:text-cyan-400 transition font-medium bg-transparent border-none flex items-center gap-2">
+            <a href="#services" class="mobile-nav-link px-3 py-3 rounded-lg text-slate-300 hover:bg-slate-800/60 hover:text-amber-400 transition font-medium">Services</a>
+            <a href="#reviews" class="mobile-nav-link px-3 py-3 rounded-lg text-slate-300 hover:bg-slate-800/60 hover:text-amber-400 transition font-medium">Reviews</a>
+            <button type="button" class="admin-login-btn mobile-nav-link w-full text-left px-3 py-3 rounded-lg text-slate-500 hover:bg-slate-800/60 hover:text-amber-400 transition font-medium bg-transparent border-none flex items-center gap-2">
               <i class="fa-solid fa-lock text-xs"></i> Admin Login
             </button>
-            <a href="#book" class="mobile-nav-link mt-2 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-cyan-600 text-slate-950 font-bold px-5 py-3 rounded-lg transition">
-              <i class="fa-solid fa-wrench text-sm"></i> Book Repair
+            <a href="#book" class="mobile-nav-link mt-2 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold px-5 py-3 rounded-lg transition">
+              <i class="fa-solid fa-calendar-check text-sm"></i> Book Appointment
             </a>
           </div>
         </nav>
@@ -280,39 +280,39 @@
 
     <!-- Hero Section -->
     <section class="relative overflow-hidden hero-grid">
-      <div class="glow-orb w-96 h-96 bg-cyan-500/10 -top-20 -right-20"></div>
-      <div class="glow-orb w-72 h-72 bg-purple-500/10 bottom-0 left-1/4"></div>
+      <div class="glow-orb w-96 h-96 bg-amber-500/10 -top-20 -right-20"></div>
+      <div class="glow-orb w-72 h-72 bg-zinc-600/10 bottom-0 left-1/4"></div>
 
       <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="relative z-10">
-            <div class="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-4 py-1.5 mb-6">
-              <span class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
-              <span class="text-cyan-400 text-sm font-semibold tracking-wide uppercase">Greater St. John's Area, NL</span>
+            <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-1.5 mb-6">
+              <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+              <span class="text-amber-400 text-sm font-semibold tracking-wide uppercase">Greater St. John's Area, NL</span>
             </div>
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Video Game</span> Repair Experts
+              Premium <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-zinc-300">Car Detailing</span> Experts
             </h1>
             <p class="text-slate-400 text-lg leading-relaxed mb-8">
-              Welcome to Griffiths Fixes, your one-stop video game repair shop servicing the Greater St. John's Area. Drifting Joysticks on your controller? Busted USB or HDMI port? Consoles running hot and in need of a cleaning? I've got you covered. With close to 15 years of repairing video game related electronics. Prices that can't be beat and worry free diagnosis. Don't waste another minute and message today to book your repair.
+              Welcome to CM Detailing, premium mobile and in-shop car detailing servicing the Greater St. John's Area. From express washes to full paint correction and ceramic coatings — we bring showroom-level results to every vehicle. Transparent pricing, meticulous attention to detail, and a finish you'll be proud to drive. Book your appointment today.
             </p>
-            <a href="#book" class="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-bold px-8 py-4 rounded-xl transition shadow-xl shadow-cyan-500/20 text-lg">
-              <i class="fa-solid fa-calendar-check"></i> Book Your Repair
+            <a href="#book" class="inline-flex items-center gap-3 bg-gradient-to-r from-amber-500 to-amber-800 hover:from-amber-400 hover:to-amber-700 text-white font-bold px-8 py-4 rounded-xl transition shadow-xl shadow-amber-500/20 text-lg">
+              <i class="fa-solid fa-calendar-check"></i> Book Your Appointment
             </a>
           </div>
 
           <!-- Hero Visual -->
           <div class="relative hidden md:flex items-center justify-center h-80 lg:h-96">
             <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-64 h-64 rounded-full border border-cyan-500/20 animate-pulse-slow"></div>
-              <div class="absolute w-48 h-48 rounded-full border border-purple-500/20 animate-pulse-slow" style="animation-delay: 1s;"></div>
-              <div class="absolute w-32 h-32 rounded-full bg-gradient-to-br from-cyan-500/20 to-purple-500/20 blur-sm"></div>
+              <div class="w-64 h-64 rounded-full border border-amber-500/20 animate-pulse-slow"></div>
+              <div class="absolute w-48 h-48 rounded-full border border-zinc-500/20 animate-pulse-slow" style="animation-delay: 1s;"></div>
+              <div class="absolute w-32 h-32 rounded-full bg-gradient-to-br from-amber-500/20 to-zinc-500/20 blur-sm"></div>
             </div>
-            <i class="fa-solid fa-gamepad text-7xl text-cyan-400/80 absolute animate-float" style="top: 20%; left: 25%;"></i>
-            <i class="fa-brands fa-playstation text-5xl text-purple-400/60 absolute animate-float" style="bottom: 25%; right: 20%; animation-delay: 1s;"></i>
-            <i class="fa-brands fa-xbox text-5xl text-cyan-400/50 absolute animate-float" style="top: 30%; right: 30%; animation-delay: 2s;"></i>
-            <i class="fa-solid fa-tv text-4xl text-purple-400/40 absolute animate-float" style="bottom: 30%; left: 30%; animation-delay: 0.5s;"></i>
-            <i class="fa-solid fa-microchip text-3xl text-cyan-400/30 absolute" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></i>
+            <i class="fa-solid fa-car text-7xl text-amber-400/80 absolute animate-float" style="top: 20%; left: 25%;"></i>
+            <i class="fa-solid fa-spray-can-sparkles text-5xl text-zinc-400/60 absolute animate-float" style="bottom: 25%; right: 20%; animation-delay: 1s;"></i>
+            <i class="fa-solid fa-droplet text-5xl text-amber-400/50 absolute animate-float" style="top: 30%; right: 30%; animation-delay: 2s;"></i>
+            <i class="fa-solid fa-star text-4xl text-zinc-400/40 absolute animate-float" style="bottom: 30%; left: 30%; animation-delay: 0.5s;"></i>
+            <i class="fa-solid fa-shield-halved text-3xl text-amber-400/30 absolute" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></i>
           </div>
         </div>
       </div>
@@ -322,8 +322,8 @@
     <section id="services" class="py-20 bg-slate-950/50">
       <div class="max-w-6xl mx-auto px-4 sm:px-6">
         <div class="text-center mb-14">
-          <h2 class="text-3xl sm:text-4xl font-bold mb-4">Our <span class="text-cyan-400">Services</span></h2>
-          <p class="text-slate-400 text-lg max-w-2xl mx-auto">Browse services by category with upfront pricing. Select a service and book your repair in seconds.</p>
+          <h2 class="text-3xl sm:text-4xl font-bold mb-4">Our <span class="text-amber-400">Services</span></h2>
+          <p class="text-slate-400 text-lg max-w-2xl mx-auto">Browse detailing packages by category with upfront pricing. Select a service and book your appointment in seconds.</p>
         </div>
         <div id="services-grid" class="space-y-6">
           <!-- Rendered by JS -->
@@ -335,8 +335,8 @@
     <section id="book" class="py-20">
       <div class="max-w-2xl mx-auto px-4 sm:px-6">
         <div class="text-center mb-10">
-          <h2 class="text-3xl sm:text-4xl font-bold mb-4">Book a <span class="text-cyan-400">Repair</span></h2>
-          <p class="text-slate-400 text-lg">Select your service, then fill out the form — we'll get back to you with drop-off details.</p>
+          <h2 class="text-3xl sm:text-4xl font-bold mb-4">Book an <span class="text-amber-400">Appointment</span></h2>
+          <p class="text-slate-400 text-lg">Select your package, then fill out the form — we'll get back to you with appointment details.</p>
         </div>
         <form id="booking-form" class="bg-slate-900/60 backdrop-blur border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5">
           <div>
@@ -365,19 +365,19 @@
               <option value="">Select a category first...</option>
             </select>
           </div>
-          <div id="book-price-summary" class="hidden rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-4 py-3 flex items-center justify-between">
+          <div id="book-price-summary" class="hidden rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 flex items-center justify-between">
             <span class="text-slate-300 text-sm font-medium">Estimated Price</span>
-            <span id="book-price-display" class="text-xl font-bold text-cyan-400"></span>
+            <span id="book-price-display" class="text-xl font-bold text-amber-400"></span>
           </div>
           <div>
-            <label for="book-device" class="block text-sm font-semibold text-slate-300 mb-2">Device <span class="text-red-400">*</span></label>
-            <input type="text" id="book-device" name="device" required class="form-input" placeholder="e.g. PS5 DualSense, Nintendo Switch OLED">
+            <label for="book-vehicle" class="block text-sm font-semibold text-slate-300 mb-2">Vehicle <span class="text-red-400">*</span></label>
+            <input type="text" id="book-vehicle" name="vehicle" required class="form-input" placeholder="e.g. 2022 BMW X5, 2019 Honda Civic">
           </div>
           <div>
-            <label for="book-issue" class="block text-sm font-semibold text-slate-300 mb-2">Additional Details <span class="text-red-400">*</span></label>
-            <textarea id="book-issue" name="issue" required rows="4" class="form-input resize-none" placeholder="Describe the problem or any extra details..."></textarea>
+            <label for="book-notes" class="block text-sm font-semibold text-slate-300 mb-2">Notes <span class="text-red-400">*</span></label>
+            <textarea id="book-notes" name="notes" required rows="4" class="form-input resize-none" placeholder="Pet hair, scratches, preferred date/time, or any special requests..."></textarea>
           </div>
-          <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 text-slate-950 font-bold py-4 rounded-xl transition shadow-lg shadow-cyan-500/20 text-lg">
+          <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-4 rounded-xl transition shadow-lg shadow-amber-500/20 text-lg">
             <i class="fa-solid fa-paper-plane mr-2"></i> Submit Request
           </button>
         </form>
@@ -388,7 +388,7 @@
     <section id="reviews" class="py-20 bg-slate-950/50">
       <div class="max-w-6xl mx-auto px-4 sm:px-6">
         <div class="text-center mb-14">
-          <h2 class="text-3xl sm:text-4xl font-bold mb-4">Customer <span class="text-cyan-400">Reviews</span></h2>
+          <h2 class="text-3xl sm:text-4xl font-bold mb-4">Customer <span class="text-amber-400">Reviews</span></h2>
           <p class="text-slate-400 text-lg">See what our customers are saying.</p>
         </div>
 
@@ -420,7 +420,7 @@
                 <label for="review-text" class="block text-sm font-semibold text-slate-300 mb-2">Your Review <span class="text-red-400">*</span></label>
                 <textarea id="review-text" required rows="3" class="form-input resize-none" placeholder="Share your experience..."></textarea>
               </div>
-              <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-bold py-3 rounded-xl transition">
+              <button type="submit" class="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-bold py-3 rounded-xl transition">
                 <i class="fa-solid fa-star mr-2"></i> Submit Review
               </button>
             </form>
@@ -432,7 +432,7 @@
     <!-- Footer -->
     <footer class="border-t border-slate-800 py-10">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-        <p class="text-slate-400 mb-2">&copy; <span id="footer-year"></span> Griffiths Fixes. All rights reserved.</p>
+        <p class="text-slate-400 mb-2">&copy; <span id="footer-year"></span> CM Detailing. All rights reserved.</p>
         <p class="text-slate-500 text-sm">Greater St. John's Area, NL</p>
       </div>
     </footer>
@@ -450,29 +450,29 @@
     <aside id="admin-sidebar" class="fixed md:sticky top-0 left-0 z-50 h-screen w-64 bg-slate-900 border-r border-slate-800 flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300">
       <div class="p-5 border-b border-slate-800">
         <h2 class="text-xl font-bold">
-          <span class="text-cyan-400">GF</span> Admin
+          <span class="text-amber-400">CM</span> Admin
         </h2>
         <p class="text-slate-500 text-sm mt-1">Dashboard</p>
       </div>
       <nav class="flex-1 p-4 space-y-1">
-        <button data-admin-tab="dashboard" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left font-medium transition bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+        <button data-admin-tab="dashboard" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left font-medium transition bg-amber-500/10 text-amber-400 border border-amber-500/20">
           <i class="fa-solid fa-gauge-high w-5"></i> Dashboard
         </button>
         <button data-admin-tab="orders" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200">
-          <i class="fa-solid fa-clipboard-list w-5"></i> Orders / Quotes
+          <i class="fa-solid fa-clipboard-list w-5"></i> Appointments
         </button>
         <button data-admin-tab="messages" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200">
           <i class="fa-solid fa-paper-plane w-5"></i> Customer Messages
         </button>
         <button data-admin-tab="services" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200">
-          <i class="fa-solid fa-screwdriver-wrench w-5"></i> Manage Services
+          <i class="fa-solid fa-spray-can-sparkles w-5"></i> Manage Services
         </button>
         <button data-admin-tab="reviews" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200">
           <i class="fa-solid fa-star w-5"></i> Manage Reviews
         </button>
       </nav>
       <div class="p-4 border-t border-slate-800">
-        <button id="back-to-site" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-cyan-400 transition font-medium">
+        <button id="back-to-site" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-amber-400 transition font-medium">
           <i class="fa-solid fa-arrow-left w-5"></i> Back to Site
         </button>
       </div>
@@ -482,7 +482,7 @@
     <main class="flex-1 min-h-screen overflow-auto">
       <!-- Admin Top Bar (mobile) -->
       <div class="sticky top-0 z-30 bg-slate-950/90 backdrop-blur border-b border-slate-800 px-4 py-3 flex items-center gap-4 md:hidden">
-        <button id="admin-menu-btn" class="p-2 text-slate-300 hover:text-cyan-400">
+        <button id="admin-menu-btn" class="p-2 text-slate-300 hover:text-amber-400">
           <i class="fa-solid fa-bars text-xl"></i>
         </button>
         <h2 class="font-bold text-lg">Admin Dashboard</h2>
@@ -494,15 +494,15 @@
         <div id="admin-tab-dashboard" class="admin-tab-panel">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <h2 class="text-2xl font-bold hidden md:block">Dashboard</h2>
-            <button id="load-demo-orders-btn" type="button" class="text-sm font-semibold px-4 py-2 rounded-lg border border-purple-500/40 text-purple-400 hover:bg-purple-500/10 transition">
+            <button id="load-demo-orders-btn" type="button" class="text-sm font-semibold px-4 py-2 rounded-lg border border-zinc-500/40 text-zinc-400 hover:bg-zinc-600/10 transition">
               <i class="fa-solid fa-flask mr-1"></i> Load Demo Data
             </button>
           </div>
 
-          <div class="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4 mb-6 flex gap-3">
-            <i class="fa-solid fa-circle-info text-cyan-400 mt-0.5"></i>
+          <div class="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 mb-6 flex gap-3">
+            <i class="fa-solid fa-circle-info text-amber-400 mt-0.5"></i>
             <div class="text-sm text-slate-300">
-              <p class="font-semibold text-cyan-400 mb-1">Demo Mode — Simulated Messaging</p>
+              <p class="font-semibold text-amber-400 mb-1">Demo Mode — Simulated Messaging</p>
               <p class="text-slate-400">Messages are previewed and logged locally. In production, these would send via <strong class="text-slate-300">Twilio SMS</strong> and <strong class="text-slate-300">Resend Email</strong>.</p>
             </div>
           </div>
@@ -514,7 +514,7 @@
           <div class="grid lg:grid-cols-2 gap-6">
             <div>
               <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
-                <i class="fa-solid fa-bolt text-cyan-400"></i> Quick Actions
+                <i class="fa-solid fa-bolt text-amber-400"></i> Quick Actions
               </h3>
               <div id="dashboard-quick-actions" class="space-y-3">
                 <!-- Rendered by JS -->
@@ -522,7 +522,7 @@
             </div>
             <div>
               <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
-                <i class="fa-solid fa-clock-rotate-left text-purple-400"></i> Recent Messages
+                <i class="fa-solid fa-clock-rotate-left text-zinc-400"></i> Recent Messages
               </h3>
               <div id="dashboard-message-log" class="rounded-xl border border-slate-800 bg-slate-900/40 divide-y divide-slate-800 max-h-96 overflow-y-auto">
                 <!-- Rendered by JS -->
@@ -533,8 +533,8 @@
 
         <!-- Orders Tab -->
         <div id="admin-tab-orders" class="admin-tab-panel hidden">
-          <h2 class="text-2xl font-bold mb-2 hidden md:block">Orders / Quotes</h2>
-          <p class="text-slate-500 text-sm mb-6 hidden md:block">Update status or send customer notifications for each repair.</p>
+          <h2 class="text-2xl font-bold mb-2 hidden md:block">Appointments</h2>
+          <p class="text-slate-500 text-sm mb-6 hidden md:block">Update status or send customer notifications for each appointment.</p>
           <div id="orders-table-wrap" class="overflow-x-auto rounded-xl border border-slate-800">
             <!-- Rendered by JS -->
           </div>
@@ -550,10 +550,10 @@
               <!-- Rendered by JS -->
             </div>
             <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5">
-              <h3 class="font-bold mb-3 flex items-center gap-2"><i class="fa-solid fa-envelope text-cyan-400"></i> How It Works</h3>
+              <h3 class="font-bold mb-3 flex items-center gap-2"><i class="fa-solid fa-envelope text-amber-400"></i> How It Works</h3>
               <ol class="text-sm text-slate-400 space-y-2 list-decimal list-inside">
                 <li>Select an order from Dashboard or Orders tab</li>
-                <li>Choose a template (drop-off, repair started, service done, etc.)</li>
+                <li>Choose a template (appointment, detail in progress, vehicle ready, etc.)</li>
                 <li>Preview the SMS and email content</li>
                 <li>Click Send — customer status updates automatically</li>
               </ol>
@@ -581,21 +581,19 @@
               <input type="hidden" id="category-edit-id" value="">
               <div>
                 <label class="block text-sm font-semibold text-slate-300 mb-2">Category Name</label>
-                <input type="text" id="category-name" required class="form-input" placeholder="e.g. HDMI Port Replacements">
+                <input type="text" id="category-name" required class="form-input" placeholder="e.g. Exterior Wash & Protection">
               </div>
               <div>
                 <label class="block text-sm font-semibold text-slate-300 mb-2">Icon</label>
                 <select id="category-icon" class="form-input">
-                  <option value="fa-gamepad">Gamepad</option>
-                  <option value="fa-tv">TV / HDMI</option>
-                  <option value="fa-plug">Plug / USB</option>
-                  <option value="fa-joystick">Joystick</option>
-                  <option value="fa-mobile-screen">Handheld</option>
-                  <option value="fa-display">Screen / LCD</option>
-                  <option value="fa-circle-question">More / Ask</option>
-                  <option value="fa-microchip">Microchip</option>
-                  <option value="fa-headset">Headset</option>
-                  <option value="fa-bolt">Power</option>
+                  <option value="fa-car">Car</option>
+                  <option value="fa-couch">Interior</option>
+                  <option value="fa-spray-can-sparkles">Spray / Detail</option>
+                  <option value="fa-wand-magic-sparkles">Paint Correction</option>
+                  <option value="fa-shield-halved">Ceramic / Protection</option>
+                  <option value="fa-droplet">Wash / Water</option>
+                  <option value="fa-star">Premium</option>
+                  <option value="fa-circle-question">Custom / Ask</option>
                 </select>
               </div>
               <div class="sm:col-span-2">
@@ -603,7 +601,7 @@
                 <textarea id="category-description" required rows="2" class="form-input resize-none" placeholder="Short description for this category"></textarea>
               </div>
               <div class="sm:col-span-2 flex gap-3">
-                <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-2.5 rounded-lg transition">
+                <button type="submit" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-2.5 rounded-lg transition">
                   <i class="fa-solid fa-folder-plus mr-1"></i> <span id="category-submit-label">Add Category</span>
                 </button>
                 <button type="button" id="category-cancel-edit" class="hidden border border-slate-600 text-slate-300 hover:bg-slate-800 px-6 py-2.5 rounded-lg transition">
@@ -631,10 +629,10 @@
               </div>
               <div class="sm:col-span-2">
                 <label class="block text-sm font-semibold text-slate-300 mb-2">Service Name</label>
-                <input type="text" id="item-name" required class="form-input" placeholder="e.g. PS5 HDMI Port Replacement">
+                <input type="text" id="item-name" required class="form-input" placeholder="e.g. Premium Hand Wash">
               </div>
               <div class="sm:col-span-2 flex gap-3">
-                <button type="submit" class="bg-purple-600 hover:bg-purple-500 text-white font-bold px-6 py-2.5 rounded-lg transition">
+                <button type="submit" class="bg-zinc-700 hover:bg-zinc-600 text-white font-bold px-6 py-2.5 rounded-lg transition">
                   <i class="fa-solid fa-plus mr-1"></i> <span id="item-submit-label">Add Service Item</span>
                 </button>
                 <button type="button" id="item-cancel-edit" class="hidden border border-slate-600 text-slate-300 hover:bg-slate-800 px-6 py-2.5 rounded-lg transition">
@@ -677,7 +675,7 @@
         </div>
         <div class="p-5 space-y-4 max-h-[70vh] overflow-y-auto">
           <div class="flex gap-2 border-b border-slate-800 pb-3">
-            <button type="button" class="message-tab-btn active px-3 py-1.5 text-sm font-semibold rounded-lg bg-cyan-500/10 text-cyan-400" data-msg-tab="sms">
+            <button type="button" class="message-tab-btn active px-3 py-1.5 text-sm font-semibold rounded-lg bg-amber-500/10 text-amber-400" data-msg-tab="sms">
               <i class="fa-solid fa-comment-sms mr-1"></i> SMS
             </button>
             <button type="button" class="message-tab-btn px-3 py-1.5 text-sm font-semibold rounded-lg text-slate-400 hover:bg-slate-800" data-msg-tab="email">
@@ -696,7 +694,7 @@
         </div>
         <div class="flex gap-3 px-5 py-4 border-t border-slate-800 bg-slate-900/80">
           <button type="button" class="flex-1 border border-slate-600 text-slate-300 hover:bg-slate-800 py-2.5 rounded-lg font-medium transition" data-close-modal>Cancel</button>
-          <button type="button" id="message-modal-send" class="flex-1 bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 text-slate-950 font-bold py-2.5 rounded-lg transition">
+          <button type="button" id="message-modal-send" class="flex-1 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-2.5 rounded-lg transition">
             <i class="fa-solid fa-paper-plane mr-1"></i> Send Now
           </button>
         </div>
@@ -711,55 +709,55 @@
     // ============================================================
     // 1. CONFIG & CONSTANTS
     // ============================================================
-    const STORAGE_KEY = 'griffithsFixesData';
-    const DATA_VERSION = 5;
-    const ORDER_STATUSES = ['Pending Drop-off', 'In Progress', 'Completed'];
+    const STORAGE_KEY = 'cmDetailingData';
+    const DATA_VERSION = 6;
+    const ORDER_STATUSES = ['Scheduled', 'In Progress', 'Ready for Pickup'];
 
     const MESSAGE_TEMPLATES = {
       dropoff: {
-        label: 'Drop-off Details',
+        label: 'Appointment Details',
         icon: 'fa-location-dot',
         color: 'cyan',
-        statusOnSend: 'Pending Drop-off',
-        sms: (o) => `Hi ${o.name}! Griffiths Fixes here. Please drop off your ${o.device} for ${o.serviceName} (${formatPrice(o.servicePrice)}). We'll confirm receipt when it arrives. — Greater St. John's, NL`,
-        emailSubject: (o) => `Drop-off Details — Griffiths Fixes`,
-        email: (o) => `Hi ${o.name},\n\nThank you for booking with Griffiths Fixes!\n\nService: ${o.serviceName}\nDevice: ${o.device}\nEstimated Price: ${formatPrice(o.servicePrice)}\n\nPlease drop off your device at your earliest convenience. We'll send you a confirmation once we receive it.\n\nQuestions? Reply to this email or call us.\n\n— Griffiths Fixes\nGreater St. John's Area, NL`,
+        statusOnSend: 'Scheduled',
+        sms: (o) => `Hi ${o.name}! CM Detailing here. Your ${o.vehicle} is booked for ${o.serviceName} (${formatPrice(o.servicePrice)}). We'll confirm your appointment details shortly. — Greater St. John's, NL`,
+        emailSubject: () => `Appointment Details — CM Detailing`,
+        email: (o) => `Hi ${o.name},\n\nThank you for booking with CM Detailing!\n\nService: ${o.serviceName}\nVehicle: ${o.vehicle}\nEstimated Price: ${formatPrice(o.servicePrice)}\n\nWe'll confirm your appointment time and location shortly.\n\nQuestions? Reply to this email or call us.\n\n— CM Detailing\nGreater St. John's Area, NL`,
       },
       started: {
-        label: 'Repair Started',
-        icon: 'fa-screwdriver-wrench',
+        label: 'Detail In Progress',
+        icon: 'fa-spray-can-sparkles',
         color: 'purple',
         statusOnSend: 'In Progress',
-        sms: (o) => `Hi ${o.name}! We've started work on your ${o.device} (${o.serviceName}). We'll notify you when it's ready for pickup. — Griffiths Fixes`,
-        emailSubject: (o) => `Repair In Progress — ${o.device}`,
-        email: (o) => `Hi ${o.name},\n\nGood news — we've started your repair!\n\nDevice: ${o.device}\nService: ${o.serviceName}\nStatus: In Progress\n\nWe'll message you as soon as your repair is complete and ready for pickup.\n\n— Griffiths Fixes`,
+        sms: (o) => `Hi ${o.name}! We've started detailing your ${o.vehicle} (${o.serviceName}). We'll notify you when it's ready for pickup. — CM Detailing`,
+        emailSubject: (o) => `Detail In Progress — ${o.vehicle}`,
+        email: (o) => `Hi ${o.name},\n\nGood news — we've started work on your vehicle!\n\nVehicle: ${o.vehicle}\nService: ${o.serviceName}\nStatus: In Progress\n\nWe'll message you as soon as your vehicle is finished and ready for pickup.\n\n— CM Detailing`,
       },
       completed: {
-        label: 'Service Done — Ready for Pickup',
+        label: 'Vehicle Ready — Pickup',
         icon: 'fa-circle-check',
         color: 'green',
-        statusOnSend: 'Completed',
-        sms: (o) => `Great news ${o.name}! Your ${o.device} repair is complete. Total: ${formatPrice(o.servicePrice)}. Ready for pickup — reply if you need hours or directions. — Griffiths Fixes`,
-        emailSubject: (o) => `Your Repair is Complete! — Griffiths Fixes`,
-        email: (o) => `Hi ${o.name},\n\nYour repair is complete and ready for pickup!\n\nDevice: ${o.device}\nService: ${o.serviceName}\nTotal: ${formatPrice(o.servicePrice)}\n\nThank you for trusting Griffiths Fixes. We hope your ${o.device} is running like new!\n\nSee you soon,\nGriffiths Fixes\nGreater St. John's Area, NL`,
+        statusOnSend: 'Ready for Pickup',
+        sms: (o) => `Great news ${o.name}! Your ${o.vehicle} is detailed and ready. Total: ${formatPrice(o.servicePrice)}. Pick up anytime — reply if you need hours or directions. — CM Detailing`,
+        emailSubject: () => `Your Vehicle is Ready! — CM Detailing`,
+        email: (o) => `Hi ${o.name},\n\nYour vehicle is ready for pickup!\n\nVehicle: ${o.vehicle}\nService: ${o.serviceName}\nTotal: ${formatPrice(o.servicePrice)}\n\nThank you for trusting CM Detailing. We hope your ${o.vehicle} looks showroom fresh!\n\nSee you soon,\nCM Detailing\nGreater St. John's Area, NL`,
       },
       review: {
         label: 'Request a Review',
         icon: 'fa-star',
         color: 'yellow',
         statusOnSend: null,
-        sms: (o) => `Thanks for choosing Griffiths Fixes, ${o.name}! If you have a moment, we'd love a quick review of your ${o.serviceName} experience. It really helps a small local shop. 🙏`,
-        emailSubject: () => `How did we do? — Griffiths Fixes`,
-        email: (o) => `Hi ${o.name},\n\nThank you for choosing Griffiths Fixes for your ${o.serviceName}!\n\nIf you're happy with the work, we'd really appreciate a quick review on our website. It helps other gamers in the St. John's area find us.\n\nThanks again,\nGriffiths Fixes`,
+        sms: (o) => `Thanks for choosing CM Detailing, ${o.name}! If you have a moment, we'd love a quick review of your ${o.serviceName} experience. It really helps a small local business.`,
+        emailSubject: () => `How did we do? — CM Detailing`,
+        email: (o) => `Hi ${o.name},\n\nThank you for choosing CM Detailing for your ${o.serviceName}!\n\nIf you're happy with the results, we'd really appreciate a quick review on our website. It helps other drivers in the St. John's area find us.\n\nThanks again,\nCM Detailing`,
       },
       delay: {
         label: 'Delay / Update',
         icon: 'fa-clock',
         color: 'orange',
         statusOnSend: null,
-        sms: (o) => `Hi ${o.name}, quick update on your ${o.device}: we need a bit more time for your ${o.serviceName}. We'll message you as soon as it's ready. Sorry for the wait! — Griffiths Fixes`,
-        emailSubject: (o) => `Repair Update — ${o.device}`,
-        email: (o) => `Hi ${o.name},\n\nWe wanted to give you a quick update on your repair.\n\nDevice: ${o.device}\nService: ${o.serviceName}\n\nWe need a little extra time to complete the work properly. We'll notify you the moment it's ready for pickup.\n\nThanks for your patience,\nGriffiths Fixes`,
+        sms: (o) => `Hi ${o.name}, quick update on your ${o.vehicle}: we need a bit more time for your ${o.serviceName}. We'll message you as soon as it's ready. Sorry for the wait! — CM Detailing`,
+        emailSubject: (o) => `Detail Update — ${o.vehicle}`,
+        email: (o) => `Hi ${o.name},\n\nWe wanted to give you a quick update on your detail.\n\nVehicle: ${o.vehicle}\nService: ${o.serviceName}\n\nWe need a little extra time to complete the work properly. We'll notify you the moment your vehicle is ready for pickup.\n\nThanks for your patience,\nCM Detailing`,
       },
     };
 
@@ -768,40 +766,40 @@
         name: 'Alex Mercer',
         phone: '(709) 555-0142',
         email: 'alex.mercer@email.com',
-        device: 'PS5 DualSense',
-        issue: 'Left stick drifting, getting worse during gameplay.',
-        serviceCategoryId: 'cat-ps-xbox-drift',
-        serviceItemId: 'item-d1',
-        serviceCategory: 'Drifting Joysticks — PS4/5 & Xbox',
-        serviceName: 'DualSense Stick Module (per stick)',
-        servicePrice: 55,
-        status: 'In Progress',
+        vehicle: '2021 Honda Civic',
+        notes: 'Heavy road salt buildup, prefer morning drop-off if possible.',
+        serviceCategoryId: 'cat-packages',
+        serviceItemId: 'item-p2',
+        serviceCategory: 'Full Detail Packages',
+        serviceName: 'Premium Detail',
+        servicePrice: 229,
+        status: 'Scheduled',
       },
       {
         name: 'Jordan Pike',
         phone: '(709) 555-0287',
         email: 'j.pike@email.com',
-        device: 'Nintendo Switch OLED',
-        issue: 'Screen cracked after drop. Touch still works on half the display.',
-        serviceCategoryId: 'cat-screens',
-        serviceItemId: 'item-s1',
-        serviceCategory: 'Switch / 3DS Screen Replacements',
-        serviceName: 'Switch OLED Screen Assembly',
-        servicePrice: 145,
-        status: 'Pending Drop-off',
+        vehicle: '2023 Tesla Model 3',
+        notes: 'Interested in long-term paint protection. White exterior.',
+        serviceCategoryId: 'cat-ceramic',
+        serviceItemId: 'item-cer2',
+        serviceCategory: 'Ceramic Coating',
+        serviceName: '3-Year Ceramic Coating',
+        servicePrice: 799,
+        status: 'In Progress',
       },
       {
         name: 'Sam O\'Brien',
         phone: '(709) 555-0391',
         email: 'sam.obrien@email.com',
-        device: 'Xbox Series X',
-        issue: 'No HDMI signal. Console powers on but no display.',
-        serviceCategoryId: 'cat-hdmi',
-        serviceItemId: 'item-h4',
-        serviceCategory: 'HDMI Port Replacements',
-        serviceName: 'Xbox Series S / X HDMI Port',
-        servicePrice: 85,
-        status: 'Completed',
+        vehicle: '2019 Ford F-150',
+        notes: 'Dog hair in back seat, muddy floor mats. Engine bay detail requested.',
+        serviceCategoryId: 'cat-interior',
+        serviceItemId: 'item-i2',
+        serviceCategory: 'Interior Detailing',
+        serviceName: 'Deep Interior Detail',
+        servicePrice: 110,
+        status: 'Ready for Pickup',
       },
     ];
 
@@ -809,136 +807,109 @@
       {
         author: 'Sam O\'Brien',
         rating: 5,
-        text: 'HDMI port on my Series X was completely dead. Griffiths had it fixed in a couple of days for a fair price. Great communication the whole way through — highly recommend!',
+        text: 'My F-150 interior looks and smells brand new. They got every bit of dog hair out and the engine bay is spotless. Fair price and great communication — highly recommend!',
         approved: true,
       },
       {
         author: 'Alex Mercer',
         rating: 5,
-        text: 'DualSense stick drift is totally gone — feels like a brand new controller. Quick turnaround and way cheaper than replacing it. Exactly what I needed.',
+        text: 'Premium detail on my Civic was incredible. Paint pops, wheels are gleaming, and the interior feels fresh. Best detailing service in St. John\'s.',
         approved: true,
       },
       {
         author: 'Chris Delaney',
         rating: 5,
-        text: 'Brought my PS5 in for a deep clean. Runs quiet now and doesn\'t overheat anymore. Solid work and honest pricing. Best repair shop in the St. John\'s area.',
+        text: 'Ceramic coating on my SUV has held up amazingly through a Newfoundland winter. Water beads right off. CM Detailing knows their stuff.',
         approved: true,
       },
       {
         author: 'Taylor Reid',
         rating: 4,
-        text: 'Both Joy-Cons had bad drift. They\'re perfect now. Repair was excellent — only wish there were Saturday hours. Will definitely come back.',
+        text: 'Deep interior detail was excellent — leather looks brand new. Only wish they had Saturday slots more often. Will definitely be back.',
         approved: true,
       },
       {
         author: 'Morgan Fitzpatrick',
         rating: 5,
-        text: 'Switch OLED screen replacement looks flawless. You honestly can\'t tell it was ever cracked. Super professional and friendly service.',
+        text: 'Paint correction removed years of swirl marks. My car looks better than the day I bought it. Super professional and friendly team.',
         approved: true,
       },
       {
         author: 'Jordan Pike',
         rating: 5,
-        text: 'Booked online and the whole process was easy. Upfront pricing, no surprises, and really friendly. Trustworthy local shop — glad I found Griffiths Fixes.',
+        text: 'Booked online and the whole process was easy. Upfront pricing, no surprises. Trustworthy local shop — glad I found CM Detailing.',
         approved: true,
       },
     ];
 
     const SEED_CATEGORIES = [
       {
-        id: 'cat-cleaning',
-        name: 'Console & Controller Cleanings',
-        icon: 'fa-gamepad',
-        description: 'Deep cleaning for overheating consoles and sticky controllers. Restore peak performance.',
+        id: 'cat-exterior',
+        name: 'Exterior Wash & Protection',
+        icon: 'fa-car',
+        description: 'Hand washes, wax, and paint protection to keep your exterior shining.',
         items: [
-          { id: 'item-c1', name: 'PS5 Console Deep Clean', price: 45 },
-          { id: 'item-c2', name: 'PS4 Console Deep Clean', price: 35 },
-          { id: 'item-c3', name: 'Xbox Series S / X Deep Clean', price: 45 },
-          { id: 'item-c4', name: 'Xbox One Deep Clean', price: 35 },
-          { id: 'item-c5', name: 'Nintendo Switch / Lite Deep Clean', price: 30 },
-          { id: 'item-c6', name: 'Controller Deep Clean (each)', price: 12 },
-          { id: 'item-c7', name: 'Thermal Paste Reapply + Clean', price: 55 },
+          { id: 'item-e1', name: 'Express Hand Wash', price: 35 },
+          { id: 'item-e2', name: 'Premium Hand Wash', price: 55 },
+          { id: 'item-e3', name: 'Spray Wax & Dry', price: 75 },
+          { id: 'item-e4', name: 'Paint Sealant Application', price: 120 },
         ],
       },
       {
-        id: 'cat-hdmi',
-        name: 'HDMI Port Replacements',
-        icon: 'fa-tv',
-        description: 'No signal? Broken HDMI port? We replace damaged ports on all major consoles.',
+        id: 'cat-interior',
+        name: 'Interior Detailing',
+        icon: 'fa-couch',
+        description: 'Deep cleaning for carpets, seats, and every interior surface.',
         items: [
-          { id: 'item-h1', name: 'PS4 HDMI Port Replacement', price: 75 },
-          { id: 'item-h2', name: 'PS5 HDMI Port Replacement', price: 95 },
-          { id: 'item-h3', name: 'Xbox One HDMI Port Replacement', price: 75 },
-          { id: 'item-h4', name: 'Xbox Series S / X HDMI Port', price: 85 },
-          { id: 'item-h5', name: 'Nintendo Switch Dock HDMI Port', price: 65 },
+          { id: 'item-i1', name: 'Basic Interior Detail', price: 65 },
+          { id: 'item-i2', name: 'Deep Interior Detail', price: 110 },
+          { id: 'item-i3', name: 'Leather Clean & Condition', price: 90 },
+          { id: 'item-i4', name: 'Odor Treatment', price: 85 },
         ],
       },
       {
-        id: 'cat-usb',
-        name: 'USB & Charge Port Replacements',
-        icon: 'fa-plug',
-        description: 'Fix loose or broken charging ports on controllers, handhelds, and consoles.',
+        id: 'cat-packages',
+        name: 'Full Detail Packages',
+        icon: 'fa-spray-can-sparkles',
+        description: 'Complete inside-and-out packages for a showroom-ready finish.',
         items: [
-          { id: 'item-u1', name: 'DualSense USB-C Port', price: 50 },
-          { id: 'item-u2', name: 'PS4 Controller Micro-USB Port', price: 35 },
-          { id: 'item-u3', name: 'Xbox Series Controller USB-C Port', price: 45 },
-          { id: 'item-u4', name: 'Xbox One Controller Charge Port', price: 35 },
-          { id: 'item-u5', name: 'Switch Console USB-C Port', price: 55 },
-          { id: 'item-u6', name: 'Switch Lite USB-C Port', price: 50 },
-          { id: 'item-u7', name: '3DS / 2DS Charge Port', price: 45 },
+          { id: 'item-p1', name: 'Standard Detail', price: 149 },
+          { id: 'item-p2', name: 'Premium Detail', price: 229 },
+          { id: 'item-p3', name: 'Show Car Detail', price: 349 },
         ],
       },
       {
-        id: 'cat-ps-xbox-drift',
-        name: 'Drifting Joysticks — PS4/5 & Xbox',
-        icon: 'fa-joystick',
-        description: 'Full module replacements for PS4/5 and Xbox One/Series S/X controller stick drift.',
+        id: 'cat-paint',
+        name: 'Paint Correction',
+        icon: 'fa-wand-magic-sparkles',
+        description: 'Remove swirls, scratches, and oxidation for a mirror-like finish.',
         items: [
-          { id: 'item-d1', name: 'DualSense Stick Module (per stick)', price: 55 },
-          { id: 'item-d2', name: 'DualSense Both Sticks', price: 95 },
-          { id: 'item-d3', name: 'PS4 DS4 Stick Module (per stick)', price: 45 },
-          { id: 'item-d4', name: 'PS4 DS4 Both Sticks', price: 80 },
-          { id: 'item-d5', name: 'Xbox Series Stick Module (per stick)', price: 55 },
-          { id: 'item-d6', name: 'Xbox Series Both Sticks', price: 95 },
-          { id: 'item-d7', name: 'Xbox One Stick Module (per stick)', price: 45 },
+          { id: 'item-pc1', name: 'Single-Stage Polish', price: 199 },
+          { id: 'item-pc2', name: 'Two-Stage Correction', price: 349 },
+          { id: 'item-pc3', name: 'Multi-Stage Correction', price: 549 },
         ],
       },
       {
-        id: 'cat-joycon',
-        name: 'Drifting Joycons — Nintendo Switch',
-        icon: 'fa-mobile-screen',
-        description: 'Professional Joy-Con stick module replacement to eliminate drift for good.',
+        id: 'cat-ceramic',
+        name: 'Ceramic Coating',
+        icon: 'fa-shield-halved',
+        description: 'Long-lasting ceramic protection for paint, wheels, and trim.',
         items: [
-          { id: 'item-j1', name: 'Joy-Con Stick Replacement (each)', price: 45 },
-          { id: 'item-j2', name: 'Both Joy-Cons', price: 85 },
-          { id: 'item-j3', name: 'Joy-Con Hall Effect Upgrade (each)', price: 60 },
-          { id: 'item-j4', name: 'Both Joy-Cons — Hall Effect', price: 110 },
+          { id: 'item-cer1', name: '1-Year Ceramic Coating', price: 499 },
+          { id: 'item-cer2', name: '3-Year Ceramic Coating', price: 799 },
+          { id: 'item-cer3', name: '5-Year Ceramic Coating', price: 1199 },
         ],
       },
       {
-        id: 'cat-screens',
-        name: 'Switch / 3DS Screen Replacements',
-        icon: 'fa-display',
-        description: 'Cracked or dead pixels? LCD/screen replacements for Switch, Switch Lite, and 3DS.',
-        items: [
-          { id: 'item-s1', name: 'Switch OLED Screen Assembly', price: 145 },
-          { id: 'item-s2', name: 'Switch Standard LCD Screen', price: 110 },
-          { id: 'item-s3', name: 'Switch Lite LCD Screen', price: 95 },
-          { id: 'item-s4', name: '3DS / 3DS XL Top Screen', price: 70 },
-          { id: 'item-s5', name: '3DS Bottom Touch Screen', price: 60 },
-          { id: 'item-s6', name: 'New 2DS XL Screen', price: 75 },
-        ],
-      },
-      {
-        id: 'cat-other',
-        name: 'Many More — Just Ask!',
+        id: 'cat-addons',
+        name: 'Add-Ons & Custom',
         icon: 'fa-circle-question',
-        description: 'Got a unique repair need? Reach out — if it\'s electronic, we can likely fix it.',
+        description: 'Extra services and custom quotes for any detailing need.',
         items: [
-          { id: 'item-o1', name: 'Diagnostic Fee (credited toward repair)', price: 15 },
-          { id: 'item-o2', name: 'Disc Drive Cleaning / Adjustment', price: 40 },
-          { id: 'item-o3', name: 'Power Supply / No Power Diagnostic', price: 25 },
-          { id: 'item-o4', name: 'Custom Repair Quote', price: null },
+          { id: 'item-a1', name: 'Engine Bay Detail', price: 65 },
+          { id: 'item-a2', name: 'Headlight Restoration', price: 80 },
+          { id: 'item-a3', name: 'Pet Hair Removal', price: 50 },
+          { id: 'item-a4', name: 'Custom Quote', price: null },
         ],
       },
     ];
@@ -975,22 +946,10 @@
     }
 
     function migrateData(data) {
-      const preserved = {
-        orders: data.orders || [],
-        reviews: data.reviews || [],
-        messageLog: data.messageLog || [],
-      };
-
-      if (data.dataVersion >= DATA_VERSION && data.categories?.length) {
-        if (!preserved.reviews.length) preserved.reviews = getDemoReviewObjects();
-        return { ...data, ...preserved, dataVersion: DATA_VERSION };
+      if (data.dataVersion >= DATA_VERSION && data.categories?.[0]?.id === 'cat-exterior') {
+        return { ...data, dataVersion: DATA_VERSION };
       }
-
-      const upgraded = { ...getSeedData(), orders: preserved.orders, reviews: preserved.reviews.length ? preserved.reviews : getDemoReviewObjects(), messageLog: preserved.messageLog };
-      preserved.orders.forEach(o => {
-        if (!o.messages) o.messages = [];
-      });
-      return upgraded;
+      return getSeedData();
     }
 
     function loadData() {
@@ -1030,8 +989,8 @@
     function showToast(message, type = 'success') {
       const container = document.getElementById('toast-container');
       const icons = {
-        success: 'fa-circle-check text-cyan-400',
-        info: 'fa-circle-info text-purple-400',
+        success: 'fa-circle-check text-amber-400',
+        info: 'fa-circle-info text-zinc-400',
         error: 'fa-circle-exclamation text-red-400',
       };
 
@@ -1086,10 +1045,10 @@
 
       document.querySelectorAll('.admin-tab-btn').forEach(btn => {
         const isActive = btn.dataset.adminTab === tabName;
-        btn.classList.toggle('bg-cyan-500/10', isActive);
-        btn.classList.toggle('text-cyan-400', isActive);
+        btn.classList.toggle('bg-amber-500/10', isActive);
+        btn.classList.toggle('text-amber-400', isActive);
         btn.classList.toggle('border', isActive);
-        btn.classList.toggle('border-cyan-500/20', isActive);
+        btn.classList.toggle('border-amber-500/20', isActive);
         btn.classList.toggle('text-slate-400', !isActive);
       });
 
@@ -1136,7 +1095,7 @@
           <div class="flex gap-1 mb-3 text-sm">${renderStars(r.rating)}</div>
           <p class="text-slate-300 mb-4 leading-relaxed">"${escapeHtml(r.text)}"</p>
           <div class="flex items-center justify-between text-sm">
-            <span class="font-semibold text-cyan-400">${escapeHtml(r.author)}</span>
+            <span class="font-semibold text-amber-400">${escapeHtml(r.author)}</span>
             <span class="text-slate-500">${formatDate(r.createdAt)}</span>
           </div>
         </div>
@@ -1232,8 +1191,8 @@
             aria-expanded="${isOpen}"
             aria-controls="panel-${cat.id}"
             data-category-id="${cat.id}">
-            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center shrink-0">
-              <i class="fa-solid ${escapeHtml(cat.icon)} text-xl text-cyan-400"></i>
+            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-amber-500/20 to-zinc-500/20 flex items-center justify-center shrink-0">
+              <i class="fa-solid ${escapeHtml(cat.icon)} text-xl text-amber-400"></i>
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex items-start justify-between gap-3">
@@ -1241,7 +1200,7 @@
                 <i class="fa-solid fa-chevron-down service-accordion-chevron text-slate-500 mt-1 shrink-0"></i>
               </div>
               <p class="text-slate-400 text-sm leading-relaxed mt-1">${escapeHtml(cat.description)}</p>
-              <p class="text-cyan-400/80 text-xs font-semibold mt-2 uppercase tracking-wide">
+              <p class="text-amber-400/80 text-xs font-semibold mt-2 uppercase tracking-wide">
                 ${itemCount} service${itemCount !== 1 ? 's' : ''} · ${getCategoryPriceRange(cat.items)}
               </p>
             </div>
@@ -1253,9 +1212,9 @@
                   <li class="service-item-row flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-5 sm:px-6 py-4">
                     <span class="text-slate-200 font-medium">${escapeHtml(item.name)}</span>
                     <div class="flex items-center gap-4 shrink-0">
-                      <span class="text-lg font-bold text-cyan-400">${formatPrice(item.price)}</span>
+                      <span class="text-lg font-bold text-amber-400">${formatPrice(item.price)}</span>
                       <button type="button"
-                        class="book-service-btn text-sm font-bold px-4 py-2 rounded-lg border border-cyan-500/40 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 transition"
+                        class="book-service-btn text-sm font-bold px-4 py-2 rounded-lg border border-amber-500/40 text-amber-400 hover:bg-amber-500/10 hover:border-amber-400 transition"
                         data-category-id="${cat.id}"
                         data-item-id="${item.id}">
                         Book
@@ -1376,10 +1335,10 @@
         const email = form.email.value.trim();
         const categoryId = document.getElementById('book-category').value;
         const itemId = document.getElementById('book-service').value;
-        const device = form.device.value.trim();
-        const issue = form.issue.value.trim();
+        const vehicle = form.vehicle.value.trim();
+        const notes = form.notes.value.trim();
 
-        if (!name || !phone || !email || !categoryId || !itemId || !device || !issue) {
+        if (!name || !phone || !email || !categoryId || !itemId || !vehicle || !notes) {
           showToast('Please fill in all required fields.', 'error');
           return;
         }
@@ -1400,14 +1359,14 @@
           name,
           phone,
           email,
-          device,
-          issue,
+          vehicle,
+          notes,
           serviceCategoryId: categoryId,
           serviceItemId: itemId,
           serviceCategory: found.category.name,
           serviceName: found.item.name,
           servicePrice: found.item.price,
-          status: 'Pending Drop-off',
+          status: 'Scheduled',
           messages: [],
           createdAt: new Date().toISOString(),
         });
@@ -1415,7 +1374,7 @@
         form.reset();
         resetBookingServiceFields();
         renderBookingCategoryOptions();
-        showToast('An automated message with drop-off details will be sent shortly.');
+        showToast('An automated message with appointment details will be sent shortly.');
       });
     }
 
@@ -1483,8 +1442,8 @@
 
       return Object.entries(MESSAGE_TEMPLATES).map(([key, tpl]) => {
         const colors = {
-          cyan: 'border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10',
-          purple: 'border-purple-500/30 text-purple-400 hover:bg-purple-500/10',
+          cyan: 'border-amber-500/30 text-amber-400 hover:bg-amber-500/10',
+          purple: 'border-zinc-500/30 text-zinc-400 hover:bg-zinc-600/10',
           green: 'border-green-500/30 text-green-400 hover:bg-green-500/10',
           yellow: 'border-yellow-500/30 text-yellow-400 hover:bg-yellow-500/10',
           orange: 'border-orange-500/30 text-orange-400 hover:bg-orange-500/10',
@@ -1504,7 +1463,7 @@
               <p class="font-semibold text-slate-200">${escapeHtml(entry.customerName)}</p>
               <p class="text-xs text-slate-500">${formatDateTime(entry.sentAt)}</p>
             </div>
-            <span class="text-xs font-semibold px-2 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 shrink-0">
+            <span class="text-xs font-semibold px-2 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 shrink-0">
               ${escapeHtml(tpl?.label || entry.templateKey)}
             </span>
           </div>
@@ -1526,33 +1485,41 @@
       return [...(getData().messageLog || [])].sort((a, b) => new Date(b.sentAt) - new Date(a.sentAt));
     }
 
+    function orderVehicle(o) {
+      return o.vehicle || o.device || '—';
+    }
+
+    function orderNotes(o) {
+      return o.notes || o.issue || '';
+    }
+
     function renderAdminDashboard() {
       const orders = getData().orders;
       const log = getSortedMessageLog();
 
       const stats = {
         total: orders.length,
-        pending: orders.filter(o => o.status === 'Pending Drop-off').length,
+        pending: orders.filter(o => o.status === 'Scheduled' || o.status === 'Pending Drop-off').length,
         progress: orders.filter(o => o.status === 'In Progress').length,
-        completed: orders.filter(o => o.status === 'Completed').length,
+        completed: orders.filter(o => o.status === 'Ready for Pickup' || o.status === 'Completed').length,
         messages: log.length,
       };
 
       document.getElementById('dashboard-stats').innerHTML = `
         <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
-          <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Total Orders</p>
+          <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Total Appointments</p>
           <p class="text-3xl font-bold text-slate-100">${stats.total}</p>
         </div>
         <div class="bg-slate-900/60 border border-yellow-500/20 rounded-xl p-4">
-          <p class="text-yellow-400/80 text-xs uppercase tracking-wide mb-1">Pending Drop-off</p>
+          <p class="text-yellow-400/80 text-xs uppercase tracking-wide mb-1">Scheduled</p>
           <p class="text-3xl font-bold text-yellow-400">${stats.pending}</p>
         </div>
-        <div class="bg-slate-900/60 border border-purple-500/20 rounded-xl p-4">
-          <p class="text-purple-400/80 text-xs uppercase tracking-wide mb-1">In Progress</p>
-          <p class="text-3xl font-bold text-purple-400">${stats.progress}</p>
+        <div class="bg-slate-900/60 border border-zinc-500/20 rounded-xl p-4">
+          <p class="text-zinc-400/80 text-xs uppercase tracking-wide mb-1">In Progress</p>
+          <p class="text-3xl font-bold text-zinc-400">${stats.progress}</p>
         </div>
         <div class="bg-slate-900/60 border border-green-500/20 rounded-xl p-4">
-          <p class="text-green-400/80 text-xs uppercase tracking-wide mb-1">Completed</p>
+          <p class="text-green-400/80 text-xs uppercase tracking-wide mb-1">Ready for Pickup</p>
           <p class="text-3xl font-bold text-green-400">${stats.completed}</p>
         </div>
       `;
@@ -1563,7 +1530,7 @@
           <div class="rounded-xl border border-slate-800 bg-slate-900/40 p-6 text-center text-slate-500">
             <i class="fa-solid fa-inbox text-3xl mb-3 text-slate-700"></i>
             <p class="mb-3">No orders yet. Submit one from the public site or load demo data.</p>
-            <button type="button" id="load-demo-inline-btn" class="text-sm font-semibold px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white transition">
+            <button type="button" id="load-demo-inline-btn" class="text-sm font-semibold px-4 py-2 rounded-lg bg-zinc-700 hover:bg-zinc-600 text-white transition">
               <i class="fa-solid fa-flask mr-1"></i> Load Demo Data
             </button>
           </div>
@@ -1575,12 +1542,12 @@
           <div class="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
               <div>
-                <p class="font-bold">${escapeHtml(o.name)} <span class="text-slate-500 font-normal">· ${escapeHtml(o.device)}</span></p>
-                <p class="text-sm text-cyan-400">${escapeHtml(o.serviceName || '—')} · ${formatPrice(o.servicePrice)}</p>
+                <p class="font-bold">${escapeHtml(o.name)} <span class="text-slate-500 font-normal">· ${escapeHtml(orderVehicle(o))}</span></p>
+                <p class="text-sm text-amber-400">${escapeHtml(o.serviceName || '—')} · ${formatPrice(o.servicePrice)}</p>
               </div>
               <span class="text-xs font-semibold px-2.5 py-1 rounded-full self-start ${
-                o.status === 'Completed' ? 'bg-green-500/10 text-green-400 border border-green-500/20' :
-                o.status === 'In Progress' ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20' :
+                o.status === 'Ready for Pickup' || o.status === 'Completed' ? 'bg-green-500/10 text-green-400 border border-green-500/20' :
+                o.status === 'In Progress' ? 'bg-zinc-600/10 text-zinc-400 border border-zinc-500/20' :
                 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'
               }">${escapeHtml(o.status)}</span>
             </div>
@@ -1603,8 +1570,8 @@
       const grid = document.getElementById('message-templates-grid');
       grid.innerHTML = Object.entries(MESSAGE_TEMPLATES).map(([key, tpl]) => {
         const colors = {
-          cyan: 'border-cyan-500/20 hover:border-cyan-500/40',
-          purple: 'border-purple-500/20 hover:border-purple-500/40',
+          cyan: 'border-amber-500/20 hover:border-amber-500/40',
+          purple: 'border-zinc-500/20 hover:border-zinc-500/40',
           green: 'border-green-500/20 hover:border-green-500/40',
           yellow: 'border-yellow-500/20 hover:border-yellow-500/40',
           orange: 'border-orange-500/20 hover:border-orange-500/40',
@@ -1612,7 +1579,7 @@
         return `
           <div class="flex items-center gap-4 p-4 rounded-xl border bg-slate-900/40 ${colors[tpl.color] || colors.cyan} transition">
             <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center shrink-0">
-              <i class="fa-solid ${tpl.icon} text-cyan-400"></i>
+              <i class="fa-solid ${tpl.icon} text-amber-400"></i>
             </div>
             <div class="flex-1 min-w-0">
               <p class="font-bold">${escapeHtml(tpl.label)}</p>
@@ -1639,7 +1606,7 @@
       pendingMessage = { orderId, templateKey };
 
       document.getElementById('message-modal-title').textContent = tpl.label;
-      document.getElementById('message-modal-subtitle').textContent = `To ${order.name} · ${order.device}`;
+      document.getElementById('message-modal-subtitle').textContent = `To ${order.name} · ${orderVehicle(order)}`;
       document.getElementById('modal-sms-to').textContent = order.phone;
       document.getElementById('modal-email-to').textContent = order.email;
       document.getElementById('modal-email-subject').textContent = tpl.emailSubject(order);
@@ -1648,8 +1615,8 @@
 
       document.querySelectorAll('.message-tab-btn').forEach(btn => {
         const isSms = btn.dataset.msgTab === 'sms';
-        btn.classList.toggle('bg-cyan-500/10', isSms);
-        btn.classList.toggle('text-cyan-400', isSms);
+        btn.classList.toggle('bg-amber-500/10', isSms);
+        btn.classList.toggle('text-amber-400', isSms);
         btn.classList.toggle('text-slate-400', !isSms);
       });
       document.getElementById('message-tab-sms').classList.remove('hidden');
@@ -1749,8 +1716,8 @@
           const tab = btn.dataset.msgTab;
           document.querySelectorAll('.message-tab-btn').forEach(b => {
             const active = b.dataset.msgTab === tab;
-            b.classList.toggle('bg-cyan-500/10', active);
-            b.classList.toggle('text-cyan-400', active);
+            b.classList.toggle('bg-amber-500/10', active);
+            b.classList.toggle('text-amber-400', active);
             b.classList.toggle('text-slate-400', !active);
           });
           document.getElementById('message-tab-sms').classList.toggle('hidden', tab !== 'sms');
@@ -1797,7 +1764,7 @@
             <tr>
               <th class="px-4 py-3 text-left">Customer</th>
               <th class="px-4 py-3 text-left">Service</th>
-              <th class="px-4 py-3 text-left">Device</th>
+              <th class="px-4 py-3 text-left">Vehicle</th>
               <th class="px-4 py-3 text-left">Status</th>
               <th class="px-4 py-3 text-left">Send Message</th>
               <th class="px-4 py-3 text-left">Date</th>
@@ -1813,12 +1780,12 @@
                 </td>
                 <td class="px-4 py-3">
                   <p class="text-slate-300">${escapeHtml(o.serviceName || '—')}</p>
-                  <p class="text-cyan-400 font-semibold">${formatPrice(o.servicePrice)}</p>
-                  <p class="text-slate-500 text-xs mt-1 max-w-xs truncate" title="${escapeHtml(o.issue)}">${escapeHtml(o.issue)}</p>
+                  <p class="text-amber-400 font-semibold">${formatPrice(o.servicePrice)}</p>
+                  <p class="text-slate-500 text-xs mt-1 max-w-xs truncate" title="${escapeHtml(orderNotes(o))}">${escapeHtml(orderNotes(o))}</p>
                 </td>
-                <td class="px-4 py-3">${escapeHtml(o.device)}</td>
+                <td class="px-4 py-3">${escapeHtml(orderVehicle(o))}</td>
                 <td class="px-4 py-3">
-                  <select class="order-status-select bg-slate-800 border border-slate-700 rounded-lg px-2 py-1.5 text-sm focus:ring-2 focus:ring-cyan-500/50 focus:outline-none" data-order-id="${o.id}" data-prev-status="${escapeHtml(o.status)}">
+                  <select class="order-status-select bg-slate-800 border border-slate-700 rounded-lg px-2 py-1.5 text-sm focus:ring-2 focus:ring-amber-500/50 focus:outline-none" data-order-id="${o.id}" data-prev-status="${escapeHtml(o.status)}">
                     ${ORDER_STATUSES.map(s => `<option value="${s}" ${o.status === s ? 'selected' : ''}>${s}</option>`).join('')}
                   </select>
                 </td>
@@ -1842,20 +1809,20 @@
                   <p class="font-bold">${escapeHtml(o.name)}</p>
                   <p class="text-slate-500 text-xs">${formatDate(o.createdAt)}</p>
                 </div>
-                <select class="order-status-select bg-slate-800 border border-slate-700 rounded-lg px-2 py-1.5 text-xs focus:ring-2 focus:ring-cyan-500/50 focus:outline-none" data-order-id="${o.id}" data-prev-status="${escapeHtml(o.status)}">
+                <select class="order-status-select bg-slate-800 border border-slate-700 rounded-lg px-2 py-1.5 text-xs focus:ring-2 focus:ring-amber-500/50 focus:outline-none" data-order-id="${o.id}" data-prev-status="${escapeHtml(o.status)}">
                   ${ORDER_STATUSES.map(s => `<option value="${s}" ${o.status === s ? 'selected' : ''}>${s}</option>`).join('')}
                 </select>
               </div>
               <div class="text-sm bg-slate-900/50 rounded-lg p-3 border border-slate-800">
-                <p class="font-medium text-cyan-400">${escapeHtml(o.serviceName || '—')} <span class="text-slate-400 font-normal">(${formatPrice(o.servicePrice)})</span></p>
+                <p class="font-medium text-amber-400">${escapeHtml(o.serviceName || '—')} <span class="text-slate-400 font-normal">(${formatPrice(o.servicePrice)})</span></p>
                 <p class="text-slate-500 text-xs">${escapeHtml(o.serviceCategory || '')}</p>
               </div>
               <div class="grid grid-cols-2 gap-2 text-sm">
                 <div><span class="text-slate-500">Phone:</span> ${escapeHtml(o.phone)}</div>
                 <div><span class="text-slate-500">Email:</span> ${escapeHtml(o.email)}</div>
               </div>
-              <div class="text-sm"><span class="text-slate-500">Device:</span> ${escapeHtml(o.device)}</div>
-              <div class="text-sm text-slate-400">${escapeHtml(o.issue)}</div>
+              <div class="text-sm"><span class="text-slate-500">Vehicle:</span> ${escapeHtml(orderVehicle(o))}</div>
+              <div class="text-sm text-slate-400">${escapeHtml(orderNotes(o))}</div>
               <div>
                 <p class="text-xs text-slate-500 uppercase tracking-wide mb-2">Send Message</p>
                 <div class="flex flex-wrap gap-2">
@@ -1886,8 +1853,8 @@
         sel.dataset.prevStatus = newStatus;
       });
 
-      if (newStatus !== prevStatus && (newStatus === 'In Progress' || newStatus === 'Completed')) {
-        const templateKey = newStatus === 'Completed' ? 'completed' : 'started';
+      if (newStatus !== prevStatus && (newStatus === 'In Progress' || newStatus === 'Ready for Pickup')) {
+        const templateKey = newStatus === 'Ready for Pickup' ? 'completed' : 'started';
         const tpl = MESSAGE_TEMPLATES[templateKey];
         showToast(`Status updated. Tip: send "${tpl.label}" from the message buttons for a full preview.`, 'info');
       }
@@ -1925,8 +1892,8 @@
         <div class="bg-slate-900/60 border border-slate-800 rounded-xl overflow-hidden" data-category-id="${cat.id}">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border-b border-slate-800 bg-slate-900/80">
             <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center shrink-0">
-                <i class="fa-solid ${escapeHtml(cat.icon)} text-cyan-400"></i>
+              <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0">
+                <i class="fa-solid ${escapeHtml(cat.icon)} text-amber-400"></i>
               </div>
               <div>
                 <p class="font-bold text-lg">${escapeHtml(cat.name)}</p>
@@ -1934,7 +1901,7 @@
               </div>
             </div>
             <div class="flex gap-2 shrink-0">
-              <button class="edit-category-btn px-3 py-2 rounded-lg border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-cyan-400 transition text-sm font-medium" data-id="${cat.id}">
+              <button class="edit-category-btn px-3 py-2 rounded-lg border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-amber-400 transition text-sm font-medium" data-id="${cat.id}">
                 <i class="fa-solid fa-pen mr-1"></i> Edit
               </button>
               <button class="delete-category-btn px-3 py-2 rounded-lg border border-slate-700 text-slate-300 hover:bg-red-900/30 hover:text-red-400 hover:border-red-800 transition text-sm font-medium" data-id="${cat.id}">
@@ -1947,8 +1914,8 @@
               <li class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-4 py-3">
                 <span class="text-slate-200">${escapeHtml(item.name)}</span>
                 <div class="flex items-center gap-3 shrink-0">
-                  <span class="font-bold text-cyan-400">${formatPrice(item.price)}</span>
-                  <button class="edit-item-btn px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-medium text-slate-300 hover:bg-slate-800 hover:text-cyan-400 transition" data-category-id="${cat.id}" data-id="${item.id}">
+                  <span class="font-bold text-amber-400">${formatPrice(item.price)}</span>
+                  <button class="edit-item-btn px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-medium text-slate-300 hover:bg-slate-800 hover:text-amber-400 transition" data-category-id="${cat.id}" data-id="${item.id}">
                     Edit
                   </button>
                   <button class="delete-item-btn px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-medium text-red-400 hover:bg-red-900/30 transition" data-category-id="${cat.id}" data-id="${item.id}">
