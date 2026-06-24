@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CM Detailing — Premium Car Detailing | St. John's, NL</title>
-  <meta name="description" content="Premium car detailing in the Greater St. John's Area. Exterior wash, interior detailing, paint correction, ceramic coatings, and more.">
+  <title>C&M Auto Asthetics — Premium Auto Aesthetics | St. John's, NL</title>
+  <meta name="description" content="C&M Auto Asthetics — premium car detailing in the Greater St. John's Area. Exterior wash, interior detailing, paint correction, ceramic coatings, and more.">
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -205,6 +205,53 @@
       transition: color 0.2s, background-color 0.2s, border-color 0.2s;
     }
 
+    .demo-image {
+      object-fit: cover;
+      width: 100%;
+    }
+    .demo-image-card {
+      overflow: hidden;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(201, 162, 39, 0.15);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+      position: relative;
+      min-height: 0;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: 11rem;
+      gap: 0.75rem;
+    }
+    @media (min-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-rows: 12.5rem;
+        gap: 1rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-rows: 13.5rem;
+      }
+    }
+    .demo-image-card .demo-image {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+    }
+    .demo-image-card:hover {
+      border-color: rgba(201, 162, 39, 0.4);
+      transform: translateY(-2px);
+    }
+    .demo-image-card img {
+      transition: transform 0.5s ease;
+    }
+    .demo-image-card:hover img {
+      transform: scale(1.05);
+    }
+
     /* Admin modal */
     .admin-modal-backdrop {
       background: rgba(10, 10, 10, 0.85);
@@ -234,13 +281,14 @@
         <div class="flex items-center justify-between h-16">
           <a href="#" class="flex items-center gap-2 group" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
             <span class="text-2xl font-bold tracking-tight">
-              CM <span class="text-amber-400 group-hover:text-amber-300 transition">Detailing</span>
+              C&amp;M <span class="text-amber-400 group-hover:text-amber-300 transition">Auto Asthetics</span>
             </span>
           </a>
 
           <!-- Desktop Nav -->
           <nav class="hidden md:flex items-center gap-6">
             <a href="#services" class="text-slate-300 hover:text-amber-400 transition font-medium">Services</a>
+            <a href="#gallery" class="text-slate-300 hover:text-amber-400 transition font-medium">Gallery</a>
             <a href="#reviews" class="text-slate-300 hover:text-amber-400 transition font-medium">Reviews</a>
             <button type="button" class="admin-login-btn text-slate-500 hover:text-amber-400 text-sm font-medium transition cursor-pointer bg-transparent border-none flex items-center gap-1.5">
               <i class="fa-solid fa-lock text-xs"></i> Admin
@@ -266,6 +314,7 @@
         <nav id="mobile-menu" class="hidden md:hidden pb-4 border-t border-slate-800/60">
           <div class="flex flex-col gap-1 pt-3">
             <a href="#services" class="mobile-nav-link px-3 py-3 rounded-lg text-slate-300 hover:bg-slate-800/60 hover:text-amber-400 transition font-medium">Services</a>
+            <a href="#gallery" class="mobile-nav-link px-3 py-3 rounded-lg text-slate-300 hover:bg-slate-800/60 hover:text-amber-400 transition font-medium">Gallery</a>
             <a href="#reviews" class="mobile-nav-link px-3 py-3 rounded-lg text-slate-300 hover:bg-slate-800/60 hover:text-amber-400 transition font-medium">Reviews</a>
             <button type="button" class="admin-login-btn mobile-nav-link w-full text-left px-3 py-3 rounded-lg text-slate-500 hover:bg-slate-800/60 hover:text-amber-400 transition font-medium bg-transparent border-none flex items-center gap-2">
               <i class="fa-solid fa-lock text-xs"></i> Admin Login
@@ -291,28 +340,101 @@
               <span class="text-amber-400 text-sm font-semibold tracking-wide uppercase">Greater St. John's Area, NL</span>
             </div>
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Premium <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-zinc-300">Car Detailing</span> Experts
+              Premium <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-zinc-300">Auto Asthetics</span> Experts
             </h1>
             <p class="text-slate-400 text-lg leading-relaxed mb-8">
-              Welcome to CM Detailing, premium mobile and in-shop car detailing servicing the Greater St. John's Area. From express washes to full paint correction and ceramic coatings — we bring showroom-level results to every vehicle. Transparent pricing, meticulous attention to detail, and a finish you'll be proud to drive. Book your appointment today.
+              Welcome to C&amp;M Auto Asthetics, premium mobile and in-shop car detailing servicing the Greater St. John's Area. From express washes to full paint correction and ceramic coatings — we bring showroom-level results to every vehicle. Transparent pricing, meticulous attention to detail, and a finish you'll be proud to drive. Book your appointment today.
             </p>
             <a href="#book" class="inline-flex items-center gap-3 bg-gradient-to-r from-amber-500 to-amber-800 hover:from-amber-400 hover:to-amber-700 text-white font-bold px-8 py-4 rounded-xl transition shadow-xl shadow-amber-500/20 text-lg">
               <i class="fa-solid fa-calendar-check"></i> Book Your Appointment
             </a>
           </div>
 
-          <!-- Hero Visual -->
-          <div class="relative hidden md:flex items-center justify-center h-80 lg:h-96">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-64 h-64 rounded-full border border-amber-500/20 animate-pulse-slow"></div>
-              <div class="absolute w-48 h-48 rounded-full border border-zinc-500/20 animate-pulse-slow" style="animation-delay: 1s;"></div>
-              <div class="absolute w-32 h-32 rounded-full bg-gradient-to-br from-amber-500/20 to-zinc-500/20 blur-sm"></div>
+          <!-- Hero Image -->
+          <div class="relative z-10">
+            <div class="relative rounded-2xl overflow-hidden border border-amber-500/20 shadow-2xl shadow-amber-500/10 h-64 sm:h-80 lg:h-96">
+              <img src="images/IMG_3933.JPG" alt="Black Ferrari F8 Tributo after premium exterior detailing by C&M Auto Asthetics" class="demo-image h-full" loading="eager">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+                <p class="text-sm font-semibold text-amber-400 uppercase tracking-wide">Showroom Results</p>
+                <div class="flex gap-2 text-amber-400/80 text-lg">
+                  <i class="fa-solid fa-spray-can-sparkles"></i>
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+              </div>
             </div>
-            <i class="fa-solid fa-car text-7xl text-amber-400/80 absolute animate-float" style="top: 20%; left: 25%;"></i>
-            <i class="fa-solid fa-spray-can-sparkles text-5xl text-zinc-400/60 absolute animate-float" style="bottom: 25%; right: 20%; animation-delay: 1s;"></i>
-            <i class="fa-solid fa-droplet text-5xl text-amber-400/50 absolute animate-float" style="top: 30%; right: 30%; animation-delay: 2s;"></i>
-            <i class="fa-solid fa-star text-4xl text-zinc-400/40 absolute animate-float" style="bottom: 30%; left: 30%; animation-delay: 0.5s;"></i>
-            <i class="fa-solid fa-shield-halved text-3xl text-amber-400/30 absolute" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 border-y border-slate-800/60">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl sm:text-4xl font-bold mb-4">Our <span class="text-amber-400">Work</span></h2>
+          <p class="text-slate-400 text-lg max-w-2xl mx-auto">Every vehicle treated with showroom-level care — from express washes to full paint correction.</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="demo-image-card">
+            <img src="images/IMG_3924.JPG" alt="Glossy black Toyota Supra after a full exterior detail" class="demo-image" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none"></div>
+            <p class="absolute bottom-3 left-3 text-xs font-bold text-white">Showroom Finish</p>
+          </div>
+          <div class="demo-image-card">
+            <img src="images/IMG_3933.JPG" alt="Black Ferrari F8 Tributo with mirror-like exterior finish" class="demo-image" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none"></div>
+            <p class="absolute bottom-3 left-3 text-xs font-bold text-white">Exotic Detail</p>
+          </div>
+          <div class="demo-image-card">
+            <img src="images/IMG_3925.JPG" alt="Mirror-like paint finish on a detailed Toyota Supra" class="demo-image" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none"></div>
+            <p class="absolute bottom-3 left-3 text-xs font-bold text-white">Paint Correction</p>
+          </div>
+          <div class="demo-image-card">
+            <img src="images/IMG_3931.JPG" alt="Ferrari F8 Tributo interior after professional detailing" class="demo-image" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none"></div>
+            <p class="absolute bottom-3 left-3 text-xs font-bold text-white">Ferrari Interior</p>
+          </div>
+          <div class="demo-image-card">
+            <img src="images/IMG_3930.JPG" alt="Ferrari sports car interior with tan leather seats" class="demo-image" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none"></div>
+            <p class="absolute bottom-3 left-3 text-xs font-bold text-white">Luxury Interior</p>
+          </div>
+          <div class="demo-image-card">
+            <img src="images/IMG_3928.JPG" alt="Yamaha R6 sport motorcycle after a premium detail" class="demo-image" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none"></div>
+            <p class="absolute bottom-3 left-3 text-xs font-bold text-white">Motorcycle Detail</p>
+          </div>
+          <div class="demo-image-card">
+            <img src="images/IMG_3929.JPG" alt="Sport motorcycle detailing on-site at a customer's home" class="demo-image" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none"></div>
+            <p class="absolute bottom-3 left-3 text-xs font-bold text-white">On-Site Detail</p>
+          </div>
+          <div class="demo-image-card">
+            <img src="images/IMG_3920.JPG" alt="Luxury Volvo interior with pristine leather and carpets" class="demo-image" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none"></div>
+            <p class="absolute bottom-3 left-3 text-xs font-bold text-white">Volvo Interior</p>
+          </div>
+          <div class="demo-image-card">
+            <img src="images/IMG_3923.JPG" alt="Volvo passenger interior after a full detail" class="demo-image" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none"></div>
+            <p class="absolute bottom-3 left-3 text-xs font-bold text-white">Interior Detail</p>
+          </div>
+          <div class="demo-image-card">
+            <img src="images/IMG_3926.JPG" alt="Toyota Supra interior with clean leather and carpets" class="demo-image" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none"></div>
+            <p class="absolute bottom-3 left-3 text-xs font-bold text-white">Supra Interior</p>
+          </div>
+          <div class="demo-image-card">
+            <img src="images/IMG_3927.JPG" alt="Toyota Supra center console and passenger footwell" class="demo-image" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none"></div>
+            <p class="absolute bottom-3 left-3 text-xs font-bold text-white">Deep Clean</p>
+          </div>
+          <div class="demo-image-card">
+            <img src="images/IMG_3932.JPG" alt="Sports car rear interior with pristine carpeting" class="demo-image" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none"></div>
+            <p class="absolute bottom-3 left-3 text-xs font-bold text-white">Carpet Detail</p>
           </div>
         </div>
       </div>
@@ -432,8 +554,8 @@
     <!-- Footer -->
     <footer class="border-t border-slate-800 py-10">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-        <p class="text-slate-400 mb-2">&copy; <span id="footer-year"></span> CM Detailing. All rights reserved.</p>
-        <p class="text-slate-500 text-sm">Greater St. John's Area, NL</p>
+        <p class="text-slate-400 mb-2">&copy; <span id="footer-year"></span> C&M Auto Asthetics. All rights reserved.</p>
+        <p class="text-slate-500 text-sm mb-1">Greater St. John's Area, NL</p>
       </div>
     </footer>
   </div>
@@ -450,7 +572,7 @@
     <aside id="admin-sidebar" class="fixed md:sticky top-0 left-0 z-50 h-screen w-64 bg-slate-900 border-r border-slate-800 flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300">
       <div class="p-5 border-b border-slate-800">
         <h2 class="text-xl font-bold">
-          <span class="text-amber-400">CM</span> Admin
+          <span class="text-amber-400">C&amp;M</span> Admin
         </h2>
         <p class="text-slate-500 text-sm mt-1">Dashboard</p>
       </div>
@@ -719,45 +841,45 @@
         icon: 'fa-location-dot',
         color: 'cyan',
         statusOnSend: 'Scheduled',
-        sms: (o) => `Hi ${o.name}! CM Detailing here. Your ${o.vehicle} is booked for ${o.serviceName} (${formatPrice(o.servicePrice)}). We'll confirm your appointment details shortly. — Greater St. John's, NL`,
-        emailSubject: () => `Appointment Details — CM Detailing`,
-        email: (o) => `Hi ${o.name},\n\nThank you for booking with CM Detailing!\n\nService: ${o.serviceName}\nVehicle: ${o.vehicle}\nEstimated Price: ${formatPrice(o.servicePrice)}\n\nWe'll confirm your appointment time and location shortly.\n\nQuestions? Reply to this email or call us.\n\n— CM Detailing\nGreater St. John's Area, NL`,
+        sms: (o) => `Hi ${o.name}! C&M Auto Asthetics here. Your ${o.vehicle} is booked for ${o.serviceName} (${formatPrice(o.servicePrice)}). We'll confirm your appointment details shortly. — Greater St. John's, NL`,
+        emailSubject: () => `Appointment Details — C&M Auto Asthetics`,
+        email: (o) => `Hi ${o.name},\n\nThank you for booking with C&M Auto Asthetics!\n\nService: ${o.serviceName}\nVehicle: ${o.vehicle}\nEstimated Price: ${formatPrice(o.servicePrice)}\n\nWe'll confirm your appointment time and location shortly.\n\nQuestions? Reply to this email or call us.\n\n— C&M Auto Asthetics\nGreater St. John's Area, NL`,
       },
       started: {
         label: 'Detail In Progress',
         icon: 'fa-spray-can-sparkles',
         color: 'purple',
         statusOnSend: 'In Progress',
-        sms: (o) => `Hi ${o.name}! We've started detailing your ${o.vehicle} (${o.serviceName}). We'll notify you when it's ready for pickup. — CM Detailing`,
+        sms: (o) => `Hi ${o.name}! We've started detailing your ${o.vehicle} (${o.serviceName}). We'll notify you when it's ready for pickup. — C&M Auto Asthetics`,
         emailSubject: (o) => `Detail In Progress — ${o.vehicle}`,
-        email: (o) => `Hi ${o.name},\n\nGood news — we've started work on your vehicle!\n\nVehicle: ${o.vehicle}\nService: ${o.serviceName}\nStatus: In Progress\n\nWe'll message you as soon as your vehicle is finished and ready for pickup.\n\n— CM Detailing`,
+        email: (o) => `Hi ${o.name},\n\nGood news — we've started work on your vehicle!\n\nVehicle: ${o.vehicle}\nService: ${o.serviceName}\nStatus: In Progress\n\nWe'll message you as soon as your vehicle is finished and ready for pickup.\n\n— C&M Auto Asthetics`,
       },
       completed: {
         label: 'Vehicle Ready — Pickup',
         icon: 'fa-circle-check',
         color: 'green',
         statusOnSend: 'Ready for Pickup',
-        sms: (o) => `Great news ${o.name}! Your ${o.vehicle} is detailed and ready. Total: ${formatPrice(o.servicePrice)}. Pick up anytime — reply if you need hours or directions. — CM Detailing`,
-        emailSubject: () => `Your Vehicle is Ready! — CM Detailing`,
-        email: (o) => `Hi ${o.name},\n\nYour vehicle is ready for pickup!\n\nVehicle: ${o.vehicle}\nService: ${o.serviceName}\nTotal: ${formatPrice(o.servicePrice)}\n\nThank you for trusting CM Detailing. We hope your ${o.vehicle} looks showroom fresh!\n\nSee you soon,\nCM Detailing\nGreater St. John's Area, NL`,
+        sms: (o) => `Great news ${o.name}! Your ${o.vehicle} is detailed and ready. Total: ${formatPrice(o.servicePrice)}. Pick up anytime — reply if you need hours or directions. — C&M Auto Asthetics`,
+        emailSubject: () => `Your Vehicle is Ready! — C&M Auto Asthetics`,
+        email: (o) => `Hi ${o.name},\n\nYour vehicle is ready for pickup!\n\nVehicle: ${o.vehicle}\nService: ${o.serviceName}\nTotal: ${formatPrice(o.servicePrice)}\n\nThank you for trusting C&M Auto Asthetics. We hope your ${o.vehicle} looks showroom fresh!\n\nSee you soon,\nC&M Auto Asthetics\nGreater St. John's Area, NL`,
       },
       review: {
         label: 'Request a Review',
         icon: 'fa-star',
         color: 'yellow',
         statusOnSend: null,
-        sms: (o) => `Thanks for choosing CM Detailing, ${o.name}! If you have a moment, we'd love a quick review of your ${o.serviceName} experience. It really helps a small local business.`,
-        emailSubject: () => `How did we do? — CM Detailing`,
-        email: (o) => `Hi ${o.name},\n\nThank you for choosing CM Detailing for your ${o.serviceName}!\n\nIf you're happy with the results, we'd really appreciate a quick review on our website. It helps other drivers in the St. John's area find us.\n\nThanks again,\nCM Detailing`,
+        sms: (o) => `Thanks for choosing C&M Auto Asthetics, ${o.name}! If you have a moment, we'd love a quick review of your ${o.serviceName} experience. It really helps a small local business.`,
+        emailSubject: () => `How did we do? — C&M Auto Asthetics`,
+        email: (o) => `Hi ${o.name},\n\nThank you for choosing C&M Auto Asthetics for your ${o.serviceName}!\n\nIf you're happy with the results, we'd really appreciate a quick review on our website. It helps other drivers in the St. John's area find us.\n\nThanks again,\nC&M Auto Asthetics`,
       },
       delay: {
         label: 'Delay / Update',
         icon: 'fa-clock',
         color: 'orange',
         statusOnSend: null,
-        sms: (o) => `Hi ${o.name}, quick update on your ${o.vehicle}: we need a bit more time for your ${o.serviceName}. We'll message you as soon as it's ready. Sorry for the wait! — CM Detailing`,
+        sms: (o) => `Hi ${o.name}, quick update on your ${o.vehicle}: we need a bit more time for your ${o.serviceName}. We'll message you as soon as it's ready. Sorry for the wait! — C&M Auto Asthetics`,
         emailSubject: (o) => `Detail Update — ${o.vehicle}`,
-        email: (o) => `Hi ${o.name},\n\nWe wanted to give you a quick update on your detail.\n\nVehicle: ${o.vehicle}\nService: ${o.serviceName}\n\nWe need a little extra time to complete the work properly. We'll notify you the moment your vehicle is ready for pickup.\n\nThanks for your patience,\nCM Detailing`,
+        email: (o) => `Hi ${o.name},\n\nWe wanted to give you a quick update on your detail.\n\nVehicle: ${o.vehicle}\nService: ${o.serviceName}\n\nWe need a little extra time to complete the work properly. We'll notify you the moment your vehicle is ready for pickup.\n\nThanks for your patience,\nC&M Auto Asthetics`,
       },
     };
 
@@ -819,7 +941,7 @@
       {
         author: 'Chris Delaney',
         rating: 5,
-        text: 'Ceramic coating on my SUV has held up amazingly through a Newfoundland winter. Water beads right off. CM Detailing knows their stuff.',
+        text: 'Ceramic coating on my SUV has held up amazingly through a Newfoundland winter. Water beads right off. C&M Auto Asthetics knows their stuff.',
         approved: true,
       },
       {
@@ -837,7 +959,7 @@
       {
         author: 'Jordan Pike',
         rating: 5,
-        text: 'Booked online and the whole process was easy. Upfront pricing, no surprises. Trustworthy local shop — glad I found CM Detailing.',
+        text: 'Booked online and the whole process was easy. Upfront pricing, no surprises. Trustworthy local shop — glad I found C&M Auto Asthetics.',
         approved: true,
       },
     ];
