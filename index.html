@@ -1,0 +1,2372 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Griffiths Fixes — Video Game Repair | St. John's, NL</title>
+  <meta name="description" content="Premium video game and electronics repair in the Greater St. John's Area. Console cleaning, HDMI ports, drifting joysticks, and more.">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Rajdhani', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              dark: '#020617',
+              cyan: '#06b6d4',
+              purple: '#a855f7',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #020617;
+      font-family: 'Rajdhani', system-ui, sans-serif;
+    }
+
+    /* Hero grid pattern */
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Glow orbs */
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    /* Service accordion */
+    .service-accordion {
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-accordion.is-open {
+      border-color: rgba(6, 182, 212, 0.35);
+      box-shadow: 0 0 24px rgba(6, 182, 212, 0.08);
+    }
+    .service-accordion-trigger {
+      transition: background-color 0.2s ease;
+    }
+    .service-accordion-trigger:hover {
+      background-color: rgba(6, 182, 212, 0.04);
+    }
+    .service-accordion-chevron {
+      transition: transform 0.3s ease;
+    }
+    .service-accordion.is-open .service-accordion-chevron {
+      transform: rotate(180deg);
+    }
+    .service-accordion-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.35s ease;
+    }
+    .service-accordion.is-open .service-accordion-panel {
+      grid-template-rows: 1fr;
+    }
+    .service-accordion-inner {
+      overflow: hidden;
+    }
+
+    /* Service category items */
+    .form-input {
+      width: 100%;
+      background-color: rgba(15, 23, 42, 0.8);
+      border: 1px solid #334155;
+      border-radius: 0.5rem;
+      padding: 0.75rem 1rem;
+      color: #f1f5f9;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input::placeholder { color: #64748b; }
+    .form-input:focus {
+      outline: none;
+      border-color: #06b6d4;
+      box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.3);
+    }
+
+    /* Toast animations */
+    #toast-container {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 24rem;
+      width: calc(100% - 2rem);
+    }
+    @media (min-width: 640px) {
+      #toast-container { width: auto; }
+    }
+    @media (max-width: 639px) {
+      #toast-container {
+        right: 50%;
+        transform: translateX(50%);
+        align-items: center;
+      }
+    }
+
+    .toast {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      border-radius: 0.75rem;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(51, 65, 85, 0.5);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      animation: toastIn 0.35s ease forwards;
+      min-width: 280px;
+    }
+    .toast.toast-out {
+      animation: toastOut 0.3s ease forwards;
+    }
+    .toast-success { border-left: 3px solid #06b6d4; }
+    .toast-info { border-left: 3px solid #a855f7; }
+    .toast-error { border-left: 3px solid #ef4444; }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(1rem); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes toastOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(1rem); }
+    }
+
+    /* Star rating */
+    .star-btn { cursor: pointer; transition: color 0.15s, transform 0.15s; }
+    .star-btn:hover { transform: scale(1.15); }
+
+    /* Admin sidebar overlay */
+    .admin-sidebar-overlay {
+      transition: opacity 0.3s ease;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+
+    /* View transitions */
+    .view-hidden { display: none !important; }
+
+    /* Delete confirm state */
+    .btn-delete-confirm {
+      background-color: #dc2626 !important;
+      border-color: #dc2626 !important;
+    }
+
+    /* Service category items */
+    .service-item-row {
+      transition: background-color 0.2s ease;
+    }
+    .service-item-row:hover {
+      background-color: rgba(6, 182, 212, 0.05);
+    }
+    .book-service-btn {
+      transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+    }
+
+    /* Admin modal */
+    .admin-modal-backdrop {
+      background: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(4px);
+    }
+    .message-preview-box {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body class="text-slate-100 antialiased min-h-screen">
+
+  <!-- Toast Container -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- ============================================================ -->
+  <!-- VIEW 1: PUBLIC WEBSITE -->
+  <!-- ============================================================ -->
+  <div id="public-view">
+
+    <!-- Sticky Header -->
+    <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/60">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex items-center justify-between h-16">
+          <a href="#" class="flex items-center gap-2 group" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
+            <span class="text-2xl font-bold tracking-tight">
+              Griffiths <span class="text-cyan-400 group-hover:text-cyan-300 transition">Fixes</span>
+            </span>
+          </a>
+
+          <!-- Desktop Nav -->
+          <nav class="hidden md:flex items-center gap-6">
+            <a href="#services" class="text-slate-300 hover:text-cyan-400 transition font-medium">Services</a>
+            <a href="#reviews" class="text-slate-300 hover:text-cyan-400 transition font-medium">Reviews</a>
+            <button type="button" class="admin-login-btn text-slate-500 hover:text-cyan-400 text-sm font-medium transition cursor-pointer bg-transparent border-none flex items-center gap-1.5">
+              <i class="fa-solid fa-lock text-xs"></i> Admin
+            </button>
+            <a href="#book" class="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 text-slate-950 font-bold px-5 py-2.5 rounded-lg transition shadow-lg shadow-cyan-500/20">
+              <i class="fa-solid fa-wrench text-sm"></i> Book Repair
+            </a>
+          </nav>
+
+          <!-- Mobile: Admin + Hamburger -->
+          <div class="flex items-center gap-1 md:hidden">
+            <button type="button" class="admin-login-btn p-2.5 text-slate-500 hover:text-cyan-400 transition" title="Admin Login" aria-label="Admin Login">
+              <i class="fa-solid fa-lock text-lg"></i>
+            </button>
+            <button id="mobile-menu-btn" class="p-2 text-slate-300 hover:text-cyan-400 transition" aria-label="Toggle menu">
+              <i class="fa-solid fa-bars text-xl" id="menu-icon-open"></i>
+              <i class="fa-solid fa-xmark text-xl hidden" id="menu-icon-close"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Nav Dropdown -->
+        <nav id="mobile-menu" class="hidden md:hidden pb-4 border-t border-slate-800/60">
+          <div class="flex flex-col gap-1 pt-3">
+            <a href="#services" class="mobile-nav-link px-3 py-3 rounded-lg text-slate-300 hover:bg-slate-800/60 hover:text-cyan-400 transition font-medium">Services</a>
+            <a href="#reviews" class="mobile-nav-link px-3 py-3 rounded-lg text-slate-300 hover:bg-slate-800/60 hover:text-cyan-400 transition font-medium">Reviews</a>
+            <button type="button" class="admin-login-btn mobile-nav-link w-full text-left px-3 py-3 rounded-lg text-slate-500 hover:bg-slate-800/60 hover:text-cyan-400 transition font-medium bg-transparent border-none flex items-center gap-2">
+              <i class="fa-solid fa-lock text-xs"></i> Admin Login
+            </button>
+            <a href="#book" class="mobile-nav-link mt-2 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-cyan-600 text-slate-950 font-bold px-5 py-3 rounded-lg transition">
+              <i class="fa-solid fa-wrench text-sm"></i> Book Repair
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden hero-grid">
+      <div class="glow-orb w-96 h-96 bg-cyan-500/10 -top-20 -right-20"></div>
+      <div class="glow-orb w-72 h-72 bg-purple-500/10 bottom-0 left-1/4"></div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="relative z-10">
+            <div class="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-4 py-1.5 mb-6">
+              <span class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
+              <span class="text-cyan-400 text-sm font-semibold tracking-wide uppercase">Greater St. John's Area, NL</span>
+            </div>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Video Game</span> Repair Experts
+            </h1>
+            <p class="text-slate-400 text-lg leading-relaxed mb-8">
+              Welcome to Griffiths Fixes, your one-stop video game repair shop servicing the Greater St. John's Area. Drifting Joysticks on your controller? Busted USB or HDMI port? Consoles running hot and in need of a cleaning? I've got you covered. With close to 15 years of repairing video game related electronics. Prices that can't be beat and worry free diagnosis. Don't waste another minute and message today to book your repair.
+            </p>
+            <a href="#book" class="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-bold px-8 py-4 rounded-xl transition shadow-xl shadow-cyan-500/20 text-lg">
+              <i class="fa-solid fa-calendar-check"></i> Book Your Repair
+            </a>
+          </div>
+
+          <!-- Hero Visual -->
+          <div class="relative hidden md:flex items-center justify-center h-80 lg:h-96">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="w-64 h-64 rounded-full border border-cyan-500/20 animate-pulse-slow"></div>
+              <div class="absolute w-48 h-48 rounded-full border border-purple-500/20 animate-pulse-slow" style="animation-delay: 1s;"></div>
+              <div class="absolute w-32 h-32 rounded-full bg-gradient-to-br from-cyan-500/20 to-purple-500/20 blur-sm"></div>
+            </div>
+            <i class="fa-solid fa-gamepad text-7xl text-cyan-400/80 absolute animate-float" style="top: 20%; left: 25%;"></i>
+            <i class="fa-brands fa-playstation text-5xl text-purple-400/60 absolute animate-float" style="bottom: 25%; right: 20%; animation-delay: 1s;"></i>
+            <i class="fa-brands fa-xbox text-5xl text-cyan-400/50 absolute animate-float" style="top: 30%; right: 30%; animation-delay: 2s;"></i>
+            <i class="fa-solid fa-tv text-4xl text-purple-400/40 absolute animate-float" style="bottom: 30%; left: 30%; animation-delay: 0.5s;"></i>
+            <i class="fa-solid fa-microchip text-3xl text-cyan-400/30 absolute" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-slate-950/50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+          <h2 class="text-3xl sm:text-4xl font-bold mb-4">Our <span class="text-cyan-400">Services</span></h2>
+          <p class="text-slate-400 text-lg max-w-2xl mx-auto">Browse services by category with upfront pricing. Select a service and book your repair in seconds.</p>
+        </div>
+        <div id="services-grid" class="space-y-6">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section id="book" class="py-20">
+      <div class="max-w-2xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl sm:text-4xl font-bold mb-4">Book a <span class="text-cyan-400">Repair</span></h2>
+          <p class="text-slate-400 text-lg">Select your service, then fill out the form — we'll get back to you with drop-off details.</p>
+        </div>
+        <form id="booking-form" class="bg-slate-900/60 backdrop-blur border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5">
+          <div>
+            <label for="book-name" class="block text-sm font-semibold text-slate-300 mb-2">Name <span class="text-red-400">*</span></label>
+            <input type="text" id="book-name" name="name" required class="form-input" placeholder="Your full name">
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="book-phone" class="block text-sm font-semibold text-slate-300 mb-2">Phone <span class="text-red-400">*</span></label>
+              <input type="tel" id="book-phone" name="phone" required class="form-input" placeholder="(709) 555-0100">
+            </div>
+            <div>
+              <label for="book-email" class="block text-sm font-semibold text-slate-300 mb-2">Email <span class="text-red-400">*</span></label>
+              <input type="email" id="book-email" name="email" required class="form-input" placeholder="you@email.com">
+            </div>
+          </div>
+          <div>
+            <label for="book-category" class="block text-sm font-semibold text-slate-300 mb-2">Service Category <span class="text-red-400">*</span></label>
+            <select id="book-category" name="category" required class="form-input">
+              <option value="">Select a category...</option>
+            </select>
+          </div>
+          <div>
+            <label for="book-service" class="block text-sm font-semibold text-slate-300 mb-2">Specific Service <span class="text-red-400">*</span></label>
+            <select id="book-service" name="service" required class="form-input" disabled>
+              <option value="">Select a category first...</option>
+            </select>
+          </div>
+          <div id="book-price-summary" class="hidden rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-4 py-3 flex items-center justify-between">
+            <span class="text-slate-300 text-sm font-medium">Estimated Price</span>
+            <span id="book-price-display" class="text-xl font-bold text-cyan-400"></span>
+          </div>
+          <div>
+            <label for="book-device" class="block text-sm font-semibold text-slate-300 mb-2">Device <span class="text-red-400">*</span></label>
+            <input type="text" id="book-device" name="device" required class="form-input" placeholder="e.g. PS5 DualSense, Nintendo Switch OLED">
+          </div>
+          <div>
+            <label for="book-issue" class="block text-sm font-semibold text-slate-300 mb-2">Additional Details <span class="text-red-400">*</span></label>
+            <textarea id="book-issue" name="issue" required rows="4" class="form-input resize-none" placeholder="Describe the problem or any extra details..."></textarea>
+          </div>
+          <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 text-slate-950 font-bold py-4 rounded-xl transition shadow-lg shadow-cyan-500/20 text-lg">
+            <i class="fa-solid fa-paper-plane mr-2"></i> Submit Request
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-20 bg-slate-950/50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+          <h2 class="text-3xl sm:text-4xl font-bold mb-4">Customer <span class="text-cyan-400">Reviews</span></h2>
+          <p class="text-slate-400 text-lg">See what our customers are saying.</p>
+        </div>
+
+        <div id="reviews-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
+          <!-- Rendered by JS -->
+        </div>
+
+        <!-- Submit Review Form -->
+        <div class="max-w-xl mx-auto">
+          <div class="bg-slate-900/60 backdrop-blur border border-slate-800 rounded-2xl p-6 sm:p-8">
+            <h3 class="text-xl font-bold mb-6 text-center">Leave a Review</h3>
+            <form id="review-form" class="space-y-5">
+              <div>
+                <label for="review-author" class="block text-sm font-semibold text-slate-300 mb-2">Your Name <span class="text-red-400">*</span></label>
+                <input type="text" id="review-author" required class="form-input" placeholder="Your name">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Rating <span class="text-red-400">*</span></label>
+                <div id="star-rating" class="flex gap-2 text-2xl">
+                  <button type="button" class="star-btn text-slate-600" data-rating="1"><i class="fa-solid fa-star"></i></button>
+                  <button type="button" class="star-btn text-slate-600" data-rating="2"><i class="fa-solid fa-star"></i></button>
+                  <button type="button" class="star-btn text-slate-600" data-rating="3"><i class="fa-solid fa-star"></i></button>
+                  <button type="button" class="star-btn text-slate-600" data-rating="4"><i class="fa-solid fa-star"></i></button>
+                  <button type="button" class="star-btn text-slate-600" data-rating="5"><i class="fa-solid fa-star"></i></button>
+                </div>
+                <input type="hidden" id="review-rating" value="0">
+              </div>
+              <div>
+                <label for="review-text" class="block text-sm font-semibold text-slate-300 mb-2">Your Review <span class="text-red-400">*</span></label>
+                <textarea id="review-text" required rows="3" class="form-input resize-none" placeholder="Share your experience..."></textarea>
+              </div>
+              <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-bold py-3 rounded-xl transition">
+                <i class="fa-solid fa-star mr-2"></i> Submit Review
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+        <p class="text-slate-400 mb-2">&copy; <span id="footer-year"></span> Griffiths Fixes. All rights reserved.</p>
+        <p class="text-slate-500 text-sm">Greater St. John's Area, NL</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- VIEW 2: ADMIN DASHBOARD -->
+  <!-- ============================================================ -->
+  <div id="admin-view" class="view-hidden min-h-screen flex">
+
+    <!-- Mobile sidebar overlay -->
+    <div id="admin-overlay" class="admin-sidebar-overlay fixed inset-0 bg-black/60 z-40 hidden md:hidden"></div>
+
+    <!-- Sidebar -->
+    <aside id="admin-sidebar" class="fixed md:sticky top-0 left-0 z-50 h-screen w-64 bg-slate-900 border-r border-slate-800 flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300">
+      <div class="p-5 border-b border-slate-800">
+        <h2 class="text-xl font-bold">
+          <span class="text-cyan-400">GF</span> Admin
+        </h2>
+        <p class="text-slate-500 text-sm mt-1">Dashboard</p>
+      </div>
+      <nav class="flex-1 p-4 space-y-1">
+        <button data-admin-tab="dashboard" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left font-medium transition bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+          <i class="fa-solid fa-gauge-high w-5"></i> Dashboard
+        </button>
+        <button data-admin-tab="orders" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200">
+          <i class="fa-solid fa-clipboard-list w-5"></i> Orders / Quotes
+        </button>
+        <button data-admin-tab="messages" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200">
+          <i class="fa-solid fa-paper-plane w-5"></i> Customer Messages
+        </button>
+        <button data-admin-tab="services" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200">
+          <i class="fa-solid fa-screwdriver-wrench w-5"></i> Manage Services
+        </button>
+        <button data-admin-tab="reviews" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200">
+          <i class="fa-solid fa-star w-5"></i> Manage Reviews
+        </button>
+      </nav>
+      <div class="p-4 border-t border-slate-800">
+        <button id="back-to-site" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-cyan-400 transition font-medium">
+          <i class="fa-solid fa-arrow-left w-5"></i> Back to Site
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 min-h-screen overflow-auto">
+      <!-- Admin Top Bar (mobile) -->
+      <div class="sticky top-0 z-30 bg-slate-950/90 backdrop-blur border-b border-slate-800 px-4 py-3 flex items-center gap-4 md:hidden">
+        <button id="admin-menu-btn" class="p-2 text-slate-300 hover:text-cyan-400">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+        <h2 class="font-bold text-lg">Admin Dashboard</h2>
+      </div>
+
+      <div class="p-4 sm:p-6 lg:p-8 max-w-6xl">
+
+        <!-- Dashboard Tab -->
+        <div id="admin-tab-dashboard" class="admin-tab-panel">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <h2 class="text-2xl font-bold hidden md:block">Dashboard</h2>
+            <button id="load-demo-orders-btn" type="button" class="text-sm font-semibold px-4 py-2 rounded-lg border border-purple-500/40 text-purple-400 hover:bg-purple-500/10 transition">
+              <i class="fa-solid fa-flask mr-1"></i> Load Demo Data
+            </button>
+          </div>
+
+          <div class="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4 mb-6 flex gap-3">
+            <i class="fa-solid fa-circle-info text-cyan-400 mt-0.5"></i>
+            <div class="text-sm text-slate-300">
+              <p class="font-semibold text-cyan-400 mb-1">Demo Mode — Simulated Messaging</p>
+              <p class="text-slate-400">Messages are previewed and logged locally. In production, these would send via <strong class="text-slate-300">Twilio SMS</strong> and <strong class="text-slate-300">Resend Email</strong>.</p>
+            </div>
+          </div>
+
+          <div id="dashboard-stats" class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <!-- Rendered by JS -->
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-6">
+            <div>
+              <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-bolt text-cyan-400"></i> Quick Actions
+              </h3>
+              <div id="dashboard-quick-actions" class="space-y-3">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-clock-rotate-left text-purple-400"></i> Recent Messages
+              </h3>
+              <div id="dashboard-message-log" class="rounded-xl border border-slate-800 bg-slate-900/40 divide-y divide-slate-800 max-h-96 overflow-y-auto">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="admin-tab-orders" class="admin-tab-panel hidden">
+          <h2 class="text-2xl font-bold mb-2 hidden md:block">Orders / Quotes</h2>
+          <p class="text-slate-500 text-sm mb-6 hidden md:block">Update status or send customer notifications for each repair.</p>
+          <div id="orders-table-wrap" class="overflow-x-auto rounded-xl border border-slate-800">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Customer Messages Tab -->
+        <div id="admin-tab-messages" class="admin-tab-panel hidden">
+          <h2 class="text-2xl font-bold mb-2 hidden md:block">Customer Messages</h2>
+          <p class="text-slate-500 text-sm mb-6 hidden md:block">Message templates and outbound notification history.</p>
+
+          <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div id="message-templates-grid" class="space-y-3">
+              <!-- Rendered by JS -->
+            </div>
+            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5">
+              <h3 class="font-bold mb-3 flex items-center gap-2"><i class="fa-solid fa-envelope text-cyan-400"></i> How It Works</h3>
+              <ol class="text-sm text-slate-400 space-y-2 list-decimal list-inside">
+                <li>Select an order from Dashboard or Orders tab</li>
+                <li>Choose a template (drop-off, repair started, service done, etc.)</li>
+                <li>Preview the SMS and email content</li>
+                <li>Click Send — customer status updates automatically</li>
+              </ol>
+              <div class="mt-4 pt-4 border-t border-slate-800 flex flex-wrap gap-2 text-xs">
+                <span class="px-2 py-1 rounded bg-green-500/10 text-green-400 border border-green-500/20"><i class="fa-solid fa-comment-sms mr-1"></i> Twilio SMS</span>
+                <span class="px-2 py-1 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20"><i class="fa-solid fa-envelope mr-1"></i> Resend Email</span>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="text-lg font-bold mb-4">All Sent Messages</h3>
+          <div id="messages-full-log" class="rounded-xl border border-slate-800 overflow-hidden">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Services Tab -->
+        <div id="admin-tab-services" class="admin-tab-panel hidden">
+          <h2 class="text-2xl font-bold mb-6 hidden md:block">Manage Services</h2>
+
+          <!-- Category Form -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5 sm:p-6 mb-6">
+            <h3 id="category-form-title" class="text-lg font-bold mb-4">Add Category</h3>
+            <form id="category-form" class="grid sm:grid-cols-2 gap-4">
+              <input type="hidden" id="category-edit-id" value="">
+              <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Category Name</label>
+                <input type="text" id="category-name" required class="form-input" placeholder="e.g. HDMI Port Replacements">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Icon</label>
+                <select id="category-icon" class="form-input">
+                  <option value="fa-gamepad">Gamepad</option>
+                  <option value="fa-tv">TV / HDMI</option>
+                  <option value="fa-plug">Plug / USB</option>
+                  <option value="fa-joystick">Joystick</option>
+                  <option value="fa-mobile-screen">Handheld</option>
+                  <option value="fa-display">Screen / LCD</option>
+                  <option value="fa-circle-question">More / Ask</option>
+                  <option value="fa-microchip">Microchip</option>
+                  <option value="fa-headset">Headset</option>
+                  <option value="fa-bolt">Power</option>
+                </select>
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Category Description</label>
+                <textarea id="category-description" required rows="2" class="form-input resize-none" placeholder="Short description for this category"></textarea>
+              </div>
+              <div class="sm:col-span-2 flex gap-3">
+                <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-2.5 rounded-lg transition">
+                  <i class="fa-solid fa-folder-plus mr-1"></i> <span id="category-submit-label">Add Category</span>
+                </button>
+                <button type="button" id="category-cancel-edit" class="hidden border border-slate-600 text-slate-300 hover:bg-slate-800 px-6 py-2.5 rounded-lg transition">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Service Item Form -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5 sm:p-6 mb-6">
+            <h3 id="item-form-title" class="text-lg font-bold mb-4">Add Service Item</h3>
+            <form id="item-form" class="grid sm:grid-cols-2 gap-4">
+              <input type="hidden" id="item-edit-id" value="">
+              <input type="hidden" id="item-edit-category-id" value="">
+              <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Category</label>
+                <select id="item-category" required class="form-input">
+                  <option value="">Select category...</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Price (CAD)</label>
+                <input type="number" id="item-price" min="0" step="0.01" class="form-input" placeholder="Leave empty for Quote">
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Service Name</label>
+                <input type="text" id="item-name" required class="form-input" placeholder="e.g. PS5 HDMI Port Replacement">
+              </div>
+              <div class="sm:col-span-2 flex gap-3">
+                <button type="submit" class="bg-purple-600 hover:bg-purple-500 text-white font-bold px-6 py-2.5 rounded-lg transition">
+                  <i class="fa-solid fa-plus mr-1"></i> <span id="item-submit-label">Add Service Item</span>
+                </button>
+                <button type="button" id="item-cancel-edit" class="hidden border border-slate-600 text-slate-300 hover:bg-slate-800 px-6 py-2.5 rounded-lg transition">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div id="admin-services-list" class="space-y-4">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Reviews Tab -->
+        <div id="admin-tab-reviews" class="admin-tab-panel hidden">
+          <h2 class="text-2xl font-bold mb-6 hidden md:block">Manage Reviews</h2>
+          <div id="admin-reviews-table-wrap" class="overflow-x-auto rounded-xl border border-slate-800">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Message Preview Modal -->
+  <div id="message-modal" class="fixed inset-0 z-[100] hidden" aria-hidden="true">
+    <div class="admin-modal-backdrop absolute inset-0" data-close-modal></div>
+    <div class="relative min-h-screen flex items-center justify-center p-4">
+      <div class="relative w-full max-w-lg bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden" role="dialog" aria-labelledby="message-modal-title">
+        <div class="flex items-center justify-between px-5 py-4 border-b border-slate-800">
+          <div>
+            <h3 id="message-modal-title" class="text-lg font-bold">Send Message</h3>
+            <p id="message-modal-subtitle" class="text-slate-500 text-sm"></p>
+          </div>
+          <button type="button" class="p-2 text-slate-400 hover:text-white transition" data-close-modal aria-label="Close">
+            <i class="fa-solid fa-xmark text-xl"></i>
+          </button>
+        </div>
+        <div class="p-5 space-y-4 max-h-[70vh] overflow-y-auto">
+          <div class="flex gap-2 border-b border-slate-800 pb-3">
+            <button type="button" class="message-tab-btn active px-3 py-1.5 text-sm font-semibold rounded-lg bg-cyan-500/10 text-cyan-400" data-msg-tab="sms">
+              <i class="fa-solid fa-comment-sms mr-1"></i> SMS
+            </button>
+            <button type="button" class="message-tab-btn px-3 py-1.5 text-sm font-semibold rounded-lg text-slate-400 hover:bg-slate-800" data-msg-tab="email">
+              <i class="fa-solid fa-envelope mr-1"></i> Email
+            </button>
+          </div>
+          <div id="message-tab-sms">
+            <p class="text-xs text-slate-500 mb-2 uppercase tracking-wide">To: <span id="modal-sms-to" class="text-slate-300"></span></p>
+            <div id="modal-sms-preview" class="message-preview-box bg-slate-950 border border-slate-800 rounded-lg p-4 text-slate-300"></div>
+          </div>
+          <div id="message-tab-email" class="hidden">
+            <p class="text-xs text-slate-500 mb-1 uppercase tracking-wide">To: <span id="modal-email-to" class="text-slate-300"></span></p>
+            <p class="text-xs text-slate-500 mb-2">Subject: <span id="modal-email-subject" class="text-slate-300 font-medium"></span></p>
+            <div id="modal-email-preview" class="message-preview-box bg-slate-950 border border-slate-800 rounded-lg p-4 text-slate-300"></div>
+          </div>
+        </div>
+        <div class="flex gap-3 px-5 py-4 border-t border-slate-800 bg-slate-900/80">
+          <button type="button" class="flex-1 border border-slate-600 text-slate-300 hover:bg-slate-800 py-2.5 rounded-lg font-medium transition" data-close-modal>Cancel</button>
+          <button type="button" id="message-modal-send" class="flex-1 bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 text-slate-950 font-bold py-2.5 rounded-lg transition">
+            <i class="fa-solid fa-paper-plane mr-1"></i> Send Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- JAVASCRIPT -->
+  <!-- ============================================================ -->
+  <script>
+    // ============================================================
+    // 1. CONFIG & CONSTANTS
+    // ============================================================
+    const STORAGE_KEY = 'griffithsFixesData';
+    const DATA_VERSION = 5;
+    const ORDER_STATUSES = ['Pending Drop-off', 'In Progress', 'Completed'];
+
+    const MESSAGE_TEMPLATES = {
+      dropoff: {
+        label: 'Drop-off Details',
+        icon: 'fa-location-dot',
+        color: 'cyan',
+        statusOnSend: 'Pending Drop-off',
+        sms: (o) => `Hi ${o.name}! Griffiths Fixes here. Please drop off your ${o.device} for ${o.serviceName} (${formatPrice(o.servicePrice)}). We'll confirm receipt when it arrives. — Greater St. John's, NL`,
+        emailSubject: (o) => `Drop-off Details — Griffiths Fixes`,
+        email: (o) => `Hi ${o.name},\n\nThank you for booking with Griffiths Fixes!\n\nService: ${o.serviceName}\nDevice: ${o.device}\nEstimated Price: ${formatPrice(o.servicePrice)}\n\nPlease drop off your device at your earliest convenience. We'll send you a confirmation once we receive it.\n\nQuestions? Reply to this email or call us.\n\n— Griffiths Fixes\nGreater St. John's Area, NL`,
+      },
+      started: {
+        label: 'Repair Started',
+        icon: 'fa-screwdriver-wrench',
+        color: 'purple',
+        statusOnSend: 'In Progress',
+        sms: (o) => `Hi ${o.name}! We've started work on your ${o.device} (${o.serviceName}). We'll notify you when it's ready for pickup. — Griffiths Fixes`,
+        emailSubject: (o) => `Repair In Progress — ${o.device}`,
+        email: (o) => `Hi ${o.name},\n\nGood news — we've started your repair!\n\nDevice: ${o.device}\nService: ${o.serviceName}\nStatus: In Progress\n\nWe'll message you as soon as your repair is complete and ready for pickup.\n\n— Griffiths Fixes`,
+      },
+      completed: {
+        label: 'Service Done — Ready for Pickup',
+        icon: 'fa-circle-check',
+        color: 'green',
+        statusOnSend: 'Completed',
+        sms: (o) => `Great news ${o.name}! Your ${o.device} repair is complete. Total: ${formatPrice(o.servicePrice)}. Ready for pickup — reply if you need hours or directions. — Griffiths Fixes`,
+        emailSubject: (o) => `Your Repair is Complete! — Griffiths Fixes`,
+        email: (o) => `Hi ${o.name},\n\nYour repair is complete and ready for pickup!\n\nDevice: ${o.device}\nService: ${o.serviceName}\nTotal: ${formatPrice(o.servicePrice)}\n\nThank you for trusting Griffiths Fixes. We hope your ${o.device} is running like new!\n\nSee you soon,\nGriffiths Fixes\nGreater St. John's Area, NL`,
+      },
+      review: {
+        label: 'Request a Review',
+        icon: 'fa-star',
+        color: 'yellow',
+        statusOnSend: null,
+        sms: (o) => `Thanks for choosing Griffiths Fixes, ${o.name}! If you have a moment, we'd love a quick review of your ${o.serviceName} experience. It really helps a small local shop. 🙏`,
+        emailSubject: () => `How did we do? — Griffiths Fixes`,
+        email: (o) => `Hi ${o.name},\n\nThank you for choosing Griffiths Fixes for your ${o.serviceName}!\n\nIf you're happy with the work, we'd really appreciate a quick review on our website. It helps other gamers in the St. John's area find us.\n\nThanks again,\nGriffiths Fixes`,
+      },
+      delay: {
+        label: 'Delay / Update',
+        icon: 'fa-clock',
+        color: 'orange',
+        statusOnSend: null,
+        sms: (o) => `Hi ${o.name}, quick update on your ${o.device}: we need a bit more time for your ${o.serviceName}. We'll message you as soon as it's ready. Sorry for the wait! — Griffiths Fixes`,
+        emailSubject: (o) => `Repair Update — ${o.device}`,
+        email: (o) => `Hi ${o.name},\n\nWe wanted to give you a quick update on your repair.\n\nDevice: ${o.device}\nService: ${o.serviceName}\n\nWe need a little extra time to complete the work properly. We'll notify you the moment it's ready for pickup.\n\nThanks for your patience,\nGriffiths Fixes`,
+      },
+    };
+
+    const DEMO_ORDERS = [
+      {
+        name: 'Alex Mercer',
+        phone: '(709) 555-0142',
+        email: 'alex.mercer@email.com',
+        device: 'PS5 DualSense',
+        issue: 'Left stick drifting, getting worse during gameplay.',
+        serviceCategoryId: 'cat-ps-xbox-drift',
+        serviceItemId: 'item-d1',
+        serviceCategory: 'Drifting Joysticks — PS4/5 & Xbox',
+        serviceName: 'DualSense Stick Module (per stick)',
+        servicePrice: 55,
+        status: 'In Progress',
+      },
+      {
+        name: 'Jordan Pike',
+        phone: '(709) 555-0287',
+        email: 'j.pike@email.com',
+        device: 'Nintendo Switch OLED',
+        issue: 'Screen cracked after drop. Touch still works on half the display.',
+        serviceCategoryId: 'cat-screens',
+        serviceItemId: 'item-s1',
+        serviceCategory: 'Switch / 3DS Screen Replacements',
+        serviceName: 'Switch OLED Screen Assembly',
+        servicePrice: 145,
+        status: 'Pending Drop-off',
+      },
+      {
+        name: 'Sam O\'Brien',
+        phone: '(709) 555-0391',
+        email: 'sam.obrien@email.com',
+        device: 'Xbox Series X',
+        issue: 'No HDMI signal. Console powers on but no display.',
+        serviceCategoryId: 'cat-hdmi',
+        serviceItemId: 'item-h4',
+        serviceCategory: 'HDMI Port Replacements',
+        serviceName: 'Xbox Series S / X HDMI Port',
+        servicePrice: 85,
+        status: 'Completed',
+      },
+    ];
+
+    const DEMO_REVIEWS = [
+      {
+        author: 'Sam O\'Brien',
+        rating: 5,
+        text: 'HDMI port on my Series X was completely dead. Griffiths had it fixed in a couple of days for a fair price. Great communication the whole way through — highly recommend!',
+        approved: true,
+      },
+      {
+        author: 'Alex Mercer',
+        rating: 5,
+        text: 'DualSense stick drift is totally gone — feels like a brand new controller. Quick turnaround and way cheaper than replacing it. Exactly what I needed.',
+        approved: true,
+      },
+      {
+        author: 'Chris Delaney',
+        rating: 5,
+        text: 'Brought my PS5 in for a deep clean. Runs quiet now and doesn\'t overheat anymore. Solid work and honest pricing. Best repair shop in the St. John\'s area.',
+        approved: true,
+      },
+      {
+        author: 'Taylor Reid',
+        rating: 4,
+        text: 'Both Joy-Cons had bad drift. They\'re perfect now. Repair was excellent — only wish there were Saturday hours. Will definitely come back.',
+        approved: true,
+      },
+      {
+        author: 'Morgan Fitzpatrick',
+        rating: 5,
+        text: 'Switch OLED screen replacement looks flawless. You honestly can\'t tell it was ever cracked. Super professional and friendly service.',
+        approved: true,
+      },
+      {
+        author: 'Jordan Pike',
+        rating: 5,
+        text: 'Booked online and the whole process was easy. Upfront pricing, no surprises, and really friendly. Trustworthy local shop — glad I found Griffiths Fixes.',
+        approved: true,
+      },
+    ];
+
+    const SEED_CATEGORIES = [
+      {
+        id: 'cat-cleaning',
+        name: 'Console & Controller Cleanings',
+        icon: 'fa-gamepad',
+        description: 'Deep cleaning for overheating consoles and sticky controllers. Restore peak performance.',
+        items: [
+          { id: 'item-c1', name: 'PS5 Console Deep Clean', price: 45 },
+          { id: 'item-c2', name: 'PS4 Console Deep Clean', price: 35 },
+          { id: 'item-c3', name: 'Xbox Series S / X Deep Clean', price: 45 },
+          { id: 'item-c4', name: 'Xbox One Deep Clean', price: 35 },
+          { id: 'item-c5', name: 'Nintendo Switch / Lite Deep Clean', price: 30 },
+          { id: 'item-c6', name: 'Controller Deep Clean (each)', price: 12 },
+          { id: 'item-c7', name: 'Thermal Paste Reapply + Clean', price: 55 },
+        ],
+      },
+      {
+        id: 'cat-hdmi',
+        name: 'HDMI Port Replacements',
+        icon: 'fa-tv',
+        description: 'No signal? Broken HDMI port? We replace damaged ports on all major consoles.',
+        items: [
+          { id: 'item-h1', name: 'PS4 HDMI Port Replacement', price: 75 },
+          { id: 'item-h2', name: 'PS5 HDMI Port Replacement', price: 95 },
+          { id: 'item-h3', name: 'Xbox One HDMI Port Replacement', price: 75 },
+          { id: 'item-h4', name: 'Xbox Series S / X HDMI Port', price: 85 },
+          { id: 'item-h5', name: 'Nintendo Switch Dock HDMI Port', price: 65 },
+        ],
+      },
+      {
+        id: 'cat-usb',
+        name: 'USB & Charge Port Replacements',
+        icon: 'fa-plug',
+        description: 'Fix loose or broken charging ports on controllers, handhelds, and consoles.',
+        items: [
+          { id: 'item-u1', name: 'DualSense USB-C Port', price: 50 },
+          { id: 'item-u2', name: 'PS4 Controller Micro-USB Port', price: 35 },
+          { id: 'item-u3', name: 'Xbox Series Controller USB-C Port', price: 45 },
+          { id: 'item-u4', name: 'Xbox One Controller Charge Port', price: 35 },
+          { id: 'item-u5', name: 'Switch Console USB-C Port', price: 55 },
+          { id: 'item-u6', name: 'Switch Lite USB-C Port', price: 50 },
+          { id: 'item-u7', name: '3DS / 2DS Charge Port', price: 45 },
+        ],
+      },
+      {
+        id: 'cat-ps-xbox-drift',
+        name: 'Drifting Joysticks — PS4/5 & Xbox',
+        icon: 'fa-joystick',
+        description: 'Full module replacements for PS4/5 and Xbox One/Series S/X controller stick drift.',
+        items: [
+          { id: 'item-d1', name: 'DualSense Stick Module (per stick)', price: 55 },
+          { id: 'item-d2', name: 'DualSense Both Sticks', price: 95 },
+          { id: 'item-d3', name: 'PS4 DS4 Stick Module (per stick)', price: 45 },
+          { id: 'item-d4', name: 'PS4 DS4 Both Sticks', price: 80 },
+          { id: 'item-d5', name: 'Xbox Series Stick Module (per stick)', price: 55 },
+          { id: 'item-d6', name: 'Xbox Series Both Sticks', price: 95 },
+          { id: 'item-d7', name: 'Xbox One Stick Module (per stick)', price: 45 },
+        ],
+      },
+      {
+        id: 'cat-joycon',
+        name: 'Drifting Joycons — Nintendo Switch',
+        icon: 'fa-mobile-screen',
+        description: 'Professional Joy-Con stick module replacement to eliminate drift for good.',
+        items: [
+          { id: 'item-j1', name: 'Joy-Con Stick Replacement (each)', price: 45 },
+          { id: 'item-j2', name: 'Both Joy-Cons', price: 85 },
+          { id: 'item-j3', name: 'Joy-Con Hall Effect Upgrade (each)', price: 60 },
+          { id: 'item-j4', name: 'Both Joy-Cons — Hall Effect', price: 110 },
+        ],
+      },
+      {
+        id: 'cat-screens',
+        name: 'Switch / 3DS Screen Replacements',
+        icon: 'fa-display',
+        description: 'Cracked or dead pixels? LCD/screen replacements for Switch, Switch Lite, and 3DS.',
+        items: [
+          { id: 'item-s1', name: 'Switch OLED Screen Assembly', price: 145 },
+          { id: 'item-s2', name: 'Switch Standard LCD Screen', price: 110 },
+          { id: 'item-s3', name: 'Switch Lite LCD Screen', price: 95 },
+          { id: 'item-s4', name: '3DS / 3DS XL Top Screen', price: 70 },
+          { id: 'item-s5', name: '3DS Bottom Touch Screen', price: 60 },
+          { id: 'item-s6', name: 'New 2DS XL Screen', price: 75 },
+        ],
+      },
+      {
+        id: 'cat-other',
+        name: 'Many More — Just Ask!',
+        icon: 'fa-circle-question',
+        description: 'Got a unique repair need? Reach out — if it\'s electronic, we can likely fix it.',
+        items: [
+          { id: 'item-o1', name: 'Diagnostic Fee (credited toward repair)', price: 15 },
+          { id: 'item-o2', name: 'Disc Drive Cleaning / Adjustment', price: 40 },
+          { id: 'item-o3', name: 'Power Supply / No Power Diagnostic', price: 25 },
+          { id: 'item-o4', name: 'Custom Repair Quote', price: null },
+        ],
+      },
+    ];
+
+    // ============================================================
+    // 2. DATA LAYER
+    // ============================================================
+    let appData = null;
+
+    function generateId() {
+      if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+        return crypto.randomUUID();
+      }
+      return 'id-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9);
+    }
+
+    function getDemoReviewObjects() {
+      const now = Date.now();
+      return DEMO_REVIEWS.map((review, i) => ({
+        id: `demo-review-${i + 1}`,
+        ...review,
+        createdAt: new Date(now - (i + 1) * 86400000 * 4).toISOString(),
+      }));
+    }
+
+    function getSeedData() {
+      return {
+        dataVersion: DATA_VERSION,
+        categories: JSON.parse(JSON.stringify(SEED_CATEGORIES)),
+        orders: [],
+        reviews: getDemoReviewObjects(),
+        messageLog: [],
+      };
+    }
+
+    function migrateData(data) {
+      const preserved = {
+        orders: data.orders || [],
+        reviews: data.reviews || [],
+        messageLog: data.messageLog || [],
+      };
+
+      if (data.dataVersion >= DATA_VERSION && data.categories?.length) {
+        if (!preserved.reviews.length) preserved.reviews = getDemoReviewObjects();
+        return { ...data, ...preserved, dataVersion: DATA_VERSION };
+      }
+
+      const upgraded = { ...getSeedData(), orders: preserved.orders, reviews: preserved.reviews.length ? preserved.reviews : getDemoReviewObjects(), messageLog: preserved.messageLog };
+      preserved.orders.forEach(o => {
+        if (!o.messages) o.messages = [];
+      });
+      return upgraded;
+    }
+
+    function loadData() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          appData = migrateData(JSON.parse(raw));
+          if (!appData.categories) appData.categories = getSeedData().categories;
+          if (!appData.orders) appData.orders = [];
+          if (!appData.reviews) appData.reviews = [];
+          if (!appData.messageLog) appData.messageLog = [];
+          if (!appData.reviews.length) appData.reviews = getDemoReviewObjects();
+          saveData();
+        } else {
+          appData = getSeedData();
+          saveData();
+        }
+      } catch (e) {
+        console.error('Failed to load data:', e);
+        appData = getSeedData();
+      }
+      return appData;
+    }
+
+    function saveData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+    }
+
+    function getData() {
+      if (!appData) loadData();
+      return appData;
+    }
+
+    // ============================================================
+    // 3. TOAST NOTIFICATIONS
+    // ============================================================
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const icons = {
+        success: 'fa-circle-check text-cyan-400',
+        info: 'fa-circle-info text-purple-400',
+        error: 'fa-circle-exclamation text-red-400',
+      };
+
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+      toast.innerHTML = `
+        <i class="fa-solid ${icons[type] || icons.success} mt-0.5"></i>
+        <p class="text-sm text-slate-200 leading-relaxed">${escapeHtml(message)}</p>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.add('toast-out');
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    // ============================================================
+    // 4. VIEW ROUTER
+    // ============================================================
+    function showView(view) {
+      const publicView = document.getElementById('public-view');
+      const adminView = document.getElementById('admin-view');
+
+      if (view === 'admin') {
+        publicView.classList.add('view-hidden');
+        adminView.classList.remove('view-hidden');
+        renderAdminDashboard();
+        renderAdminOrders();
+        renderAdminMessages();
+        renderAdminServices();
+        renderAdminReviews();
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      } else {
+        adminView.classList.add('view-hidden');
+        publicView.classList.remove('view-hidden');
+        closeAdminSidebar();
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+    }
+
+    function switchAdminTab(tabName) {
+      document.querySelectorAll('.admin-tab-panel').forEach(p => p.classList.add('hidden'));
+      document.getElementById(`admin-tab-${tabName}`).classList.remove('hidden');
+
+      document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+        const isActive = btn.dataset.adminTab === tabName;
+        btn.classList.toggle('bg-cyan-500/10', isActive);
+        btn.classList.toggle('text-cyan-400', isActive);
+        btn.classList.toggle('border', isActive);
+        btn.classList.toggle('border-cyan-500/20', isActive);
+        btn.classList.toggle('text-slate-400', !isActive);
+      });
+
+      closeAdminSidebar();
+    }
+
+    function openAdminSidebar() {
+      document.getElementById('admin-sidebar').classList.remove('-translate-x-full');
+      document.getElementById('admin-overlay').classList.remove('hidden');
+    }
+
+    function closeAdminSidebar() {
+      document.getElementById('admin-sidebar').classList.add('-translate-x-full');
+      document.getElementById('admin-overlay').classList.add('hidden');
+    }
+
+    // ============================================================
+    // 5. PUBLIC RENDERERS
+    // ============================================================
+    function renderStars(rating) {
+      let html = '';
+      for (let i = 1; i <= 5; i++) {
+        html += `<i class="fa-solid fa-star ${i <= rating ? 'text-yellow-400' : 'text-slate-600'}"></i>`;
+      }
+      return html;
+    }
+
+    function renderApprovedReviews() {
+      const container = document.getElementById('reviews-list');
+      const approved = getData().reviews.filter(r => r.approved);
+
+      if (!approved.length) {
+        container.innerHTML = `
+          <div class="col-span-full text-center py-8">
+            <i class="fa-solid fa-star text-4xl text-slate-700 mb-4"></i>
+            <p class="text-slate-500">No reviews yet. Be the first to share your experience!</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = approved.map(r => `
+        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-6">
+          <div class="flex gap-1 mb-3 text-sm">${renderStars(r.rating)}</div>
+          <p class="text-slate-300 mb-4 leading-relaxed">"${escapeHtml(r.text)}"</p>
+          <div class="flex items-center justify-between text-sm">
+            <span class="font-semibold text-cyan-400">${escapeHtml(r.author)}</span>
+            <span class="text-slate-500">${formatDate(r.createdAt)}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function formatDate(iso) {
+      if (!iso) return '';
+      return new Date(iso).toLocaleDateString('en-CA', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function formatPrice(price) {
+      if (price === null || price === undefined || price === '') return 'Quote';
+      const num = Number(price);
+      if (Number.isNaN(num)) return 'Quote';
+      return '$' + (Number.isInteger(num) ? num : num.toFixed(2));
+    }
+
+    function findServiceItem(categoryId, itemId) {
+      const category = getData().categories.find(c => c.id === categoryId);
+      if (!category) return null;
+      const item = category.items.find(i => i.id === itemId);
+      if (!item) return null;
+      return { category, item };
+    }
+
+    function getCategoryPriceRange(items) {
+      const prices = (items || []).map(i => i.price).filter(p => p !== null && p !== undefined && p !== '');
+      if (!prices.length) return 'Quote';
+      const min = Math.min(...prices);
+      const max = Math.max(...prices);
+      return min === max ? `from ${formatPrice(min)}` : `${formatPrice(min)} – ${formatPrice(max)}`;
+    }
+
+    let expandedCategoryIds = new Set();
+
+    function toggleServiceAccordion(trigger) {
+      const accordion = trigger.closest('.service-accordion');
+      const categoryId = trigger.dataset.categoryId;
+      const isOpen = accordion.classList.contains('is-open');
+
+      if (isOpen) {
+        accordion.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        expandedCategoryIds.delete(categoryId);
+      } else {
+        accordion.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+        expandedCategoryIds.add(categoryId);
+      }
+    }
+
+    function initServiceAccordions() {
+      const grid = document.getElementById('services-grid');
+      if (grid.dataset.accordionBound) return;
+      grid.dataset.accordionBound = 'true';
+
+      grid.addEventListener('click', (e) => {
+        const trigger = e.target.closest('.service-accordion-trigger');
+        if (trigger) {
+          toggleServiceAccordion(trigger);
+          return;
+        }
+
+        const bookBtn = e.target.closest('.book-service-btn');
+        if (bookBtn) {
+          preselectBookingService(bookBtn.dataset.categoryId, bookBtn.dataset.itemId);
+        }
+      });
+    }
+
+    function renderPublicServices() {
+      const grid = document.getElementById('services-grid');
+      const categories = getData().categories;
+
+      document.querySelectorAll('.service-accordion.is-open .service-accordion-trigger').forEach(btn => {
+        expandedCategoryIds.add(btn.dataset.categoryId);
+      });
+
+      if (!categories.length) {
+        grid.innerHTML = '<p class="text-slate-500 text-center">No services listed yet.</p>';
+        return;
+      }
+
+      const openFirstByDefault = expandedCategoryIds.size === 0;
+
+      grid.innerHTML = categories.map((cat, index) => {
+        const itemCount = (cat.items || []).length;
+        const isOpen = expandedCategoryIds.has(cat.id) || (openFirstByDefault && index === 0);
+        if (isOpen) expandedCategoryIds.add(cat.id);
+
+        return `
+        <div class="service-accordion bg-slate-900/80 border border-slate-800 rounded-xl overflow-hidden ${isOpen ? 'is-open' : ''}" data-category-id="${cat.id}">
+          <button type="button"
+            class="service-accordion-trigger w-full p-5 sm:p-6 flex items-start gap-4 text-left"
+            aria-expanded="${isOpen}"
+            aria-controls="panel-${cat.id}"
+            data-category-id="${cat.id}">
+            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center shrink-0">
+              <i class="fa-solid ${escapeHtml(cat.icon)} text-xl text-cyan-400"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-3">
+                <h3 class="text-xl font-bold text-slate-100">${escapeHtml(cat.name)}</h3>
+                <i class="fa-solid fa-chevron-down service-accordion-chevron text-slate-500 mt-1 shrink-0"></i>
+              </div>
+              <p class="text-slate-400 text-sm leading-relaxed mt-1">${escapeHtml(cat.description)}</p>
+              <p class="text-cyan-400/80 text-xs font-semibold mt-2 uppercase tracking-wide">
+                ${itemCount} service${itemCount !== 1 ? 's' : ''} · ${getCategoryPriceRange(cat.items)}
+              </p>
+            </div>
+          </button>
+          <div id="panel-${cat.id}" class="service-accordion-panel" role="region" aria-label="${escapeHtml(cat.name)} services">
+            <div class="service-accordion-inner">
+              <ul class="divide-y divide-slate-800/80 border-t border-slate-800/80">
+                ${(cat.items || []).map(item => `
+                  <li class="service-item-row flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-5 sm:px-6 py-4">
+                    <span class="text-slate-200 font-medium">${escapeHtml(item.name)}</span>
+                    <div class="flex items-center gap-4 shrink-0">
+                      <span class="text-lg font-bold text-cyan-400">${formatPrice(item.price)}</span>
+                      <button type="button"
+                        class="book-service-btn text-sm font-bold px-4 py-2 rounded-lg border border-cyan-500/40 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 transition"
+                        data-category-id="${cat.id}"
+                        data-item-id="${item.id}">
+                        Book
+                      </button>
+                    </div>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          </div>
+        </div>
+      `;
+      }).join('');
+
+      initServiceAccordions();
+      renderBookingCategoryOptions();
+    }
+
+    function renderBookingCategoryOptions() {
+      const categorySelect = document.getElementById('book-category');
+      if (!categorySelect) return;
+
+      const current = categorySelect.value;
+      categorySelect.innerHTML = '<option value="">Select a category...</option>' +
+        getData().categories.map(c =>
+          `<option value="${c.id}">${escapeHtml(c.name)}</option>`
+        ).join('');
+
+      if (current && getData().categories.some(c => c.id === current)) {
+        categorySelect.value = current;
+        updateBookingServiceOptions();
+      }
+    }
+
+    function updateBookingServiceOptions() {
+      const categoryId = document.getElementById('book-category').value;
+      const serviceSelect = document.getElementById('book-service');
+      const priceSummary = document.getElementById('book-price-summary');
+
+      serviceSelect.innerHTML = '<option value="">Select a service...</option>';
+      priceSummary.classList.add('hidden');
+
+      if (!categoryId) {
+        serviceSelect.disabled = true;
+        serviceSelect.innerHTML = '<option value="">Select a category first...</option>';
+        return;
+      }
+
+      const category = getData().categories.find(c => c.id === categoryId);
+      if (!category) return;
+
+      serviceSelect.disabled = false;
+      serviceSelect.innerHTML = '<option value="">Select a service...</option>' +
+        (category.items || []).map(item =>
+          `<option value="${item.id}">${escapeHtml(item.name)} — ${formatPrice(item.price)}</option>`
+        ).join('');
+    }
+
+    function updateBookingPriceDisplay() {
+      const categoryId = document.getElementById('book-category').value;
+      const itemId = document.getElementById('book-service').value;
+      const priceSummary = document.getElementById('book-price-summary');
+      const priceDisplay = document.getElementById('book-price-display');
+
+      if (!categoryId || !itemId) {
+        priceSummary.classList.add('hidden');
+        return;
+      }
+
+      const found = findServiceItem(categoryId, itemId);
+      if (!found) {
+        priceSummary.classList.add('hidden');
+        return;
+      }
+
+      priceDisplay.textContent = formatPrice(found.item.price);
+      priceSummary.classList.remove('hidden');
+    }
+
+    function preselectBookingService(categoryId, itemId) {
+      const categorySelect = document.getElementById('book-category');
+      const serviceSelect = document.getElementById('book-service');
+
+      categorySelect.value = categoryId;
+      updateBookingServiceOptions();
+      serviceSelect.value = itemId;
+      updateBookingPriceDisplay();
+
+      document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+      showToast('Service selected — complete the form below.', 'info');
+    }
+
+    function resetBookingServiceFields() {
+      document.getElementById('book-category').value = '';
+      const serviceSelect = document.getElementById('book-service');
+      serviceSelect.value = '';
+      serviceSelect.disabled = true;
+      serviceSelect.innerHTML = '<option value="">Select a category first...</option>';
+      document.getElementById('book-price-summary').classList.add('hidden');
+    }
+
+    // ============================================================
+    // 6. PUBLIC FORM HANDLERS
+    // ============================================================
+    function initBookingForm() {
+      document.getElementById('book-category').addEventListener('change', () => {
+        updateBookingServiceOptions();
+        updateBookingPriceDisplay();
+      });
+
+      document.getElementById('book-service').addEventListener('change', updateBookingPriceDisplay);
+
+      document.getElementById('booking-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value.trim();
+        const phone = form.phone.value.trim();
+        const email = form.email.value.trim();
+        const categoryId = document.getElementById('book-category').value;
+        const itemId = document.getElementById('book-service').value;
+        const device = form.device.value.trim();
+        const issue = form.issue.value.trim();
+
+        if (!name || !phone || !email || !categoryId || !itemId || !device || !issue) {
+          showToast('Please fill in all required fields.', 'error');
+          return;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          showToast('Please enter a valid email address.', 'error');
+          return;
+        }
+
+        const found = findServiceItem(categoryId, itemId);
+        if (!found) {
+          showToast('Please select a valid service.', 'error');
+          return;
+        }
+
+        getData().orders.push({
+          id: generateId(),
+          name,
+          phone,
+          email,
+          device,
+          issue,
+          serviceCategoryId: categoryId,
+          serviceItemId: itemId,
+          serviceCategory: found.category.name,
+          serviceName: found.item.name,
+          servicePrice: found.item.price,
+          status: 'Pending Drop-off',
+          messages: [],
+          createdAt: new Date().toISOString(),
+        });
+        saveData();
+        form.reset();
+        resetBookingServiceFields();
+        renderBookingCategoryOptions();
+        showToast('An automated message with drop-off details will be sent shortly.');
+      });
+    }
+
+    let selectedRating = 0;
+
+    function initReviewForm() {
+      const starBtns = document.querySelectorAll('.star-btn');
+      const ratingInput = document.getElementById('review-rating');
+
+      starBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          selectedRating = parseInt(btn.dataset.rating);
+          ratingInput.value = selectedRating;
+          starBtns.forEach((b, i) => {
+            b.classList.toggle('text-yellow-400', i < selectedRating);
+            b.classList.toggle('text-slate-600', i >= selectedRating);
+          });
+        });
+      });
+
+      document.getElementById('review-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const author = document.getElementById('review-author').value.trim();
+        const text = document.getElementById('review-text').value.trim();
+        const rating = selectedRating;
+
+        if (!author || !text) {
+          showToast('Please fill in all fields.', 'error');
+          return;
+        }
+        if (rating < 1) {
+          showToast('Please select a star rating.', 'error');
+          return;
+        }
+
+        getData().reviews.push({
+          id: generateId(),
+          author,
+          rating,
+          text,
+          approved: false,
+          createdAt: new Date().toISOString(),
+        });
+        saveData();
+        e.target.reset();
+        selectedRating = 0;
+        ratingInput.value = 0;
+        starBtns.forEach(b => {
+          b.classList.remove('text-yellow-400');
+          b.classList.add('text-slate-600');
+        });
+        showToast('Thank you! Your review has been submitted and is pending approval.', 'info');
+      });
+    }
+
+    // ============================================================
+    // 7. ADMIN RENDERERS & HANDLERS
+    // ============================================================
+    let pendingMessage = { orderId: null, templateKey: null };
+
+    function renderMessageActionButtons(orderId, compact = false) {
+      const btnClass = compact
+        ? 'send-msg-btn px-2 py-1 rounded text-xs font-medium border transition'
+        : 'send-msg-btn px-2.5 py-1.5 rounded-lg text-xs font-medium border transition whitespace-nowrap';
+
+      return Object.entries(MESSAGE_TEMPLATES).map(([key, tpl]) => {
+        const colors = {
+          cyan: 'border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10',
+          purple: 'border-purple-500/30 text-purple-400 hover:bg-purple-500/10',
+          green: 'border-green-500/30 text-green-400 hover:bg-green-500/10',
+          yellow: 'border-yellow-500/30 text-yellow-400 hover:bg-yellow-500/10',
+          orange: 'border-orange-500/30 text-orange-400 hover:bg-orange-500/10',
+        };
+        return `<button type="button" class="${btnClass} ${colors[tpl.color] || colors.cyan}" data-order-id="${orderId}" data-template="${key}" title="${tpl.label}">
+          <i class="fa-solid ${tpl.icon} ${compact ? '' : 'mr-1'}"></i>${compact ? '' : tpl.label.split(' ')[0]}
+        </button>`;
+      }).join('');
+    }
+
+    function renderMessageLogItem(entry) {
+      const tpl = MESSAGE_TEMPLATES[entry.templateKey];
+      return `
+        <div class="p-4 hover:bg-slate-900/40 transition">
+          <div class="flex items-start justify-between gap-3 mb-2">
+            <div>
+              <p class="font-semibold text-slate-200">${escapeHtml(entry.customerName)}</p>
+              <p class="text-xs text-slate-500">${formatDateTime(entry.sentAt)}</p>
+            </div>
+            <span class="text-xs font-semibold px-2 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 shrink-0">
+              ${escapeHtml(tpl?.label || entry.templateKey)}
+            </span>
+          </div>
+          <p class="text-sm text-slate-400 line-clamp-2">${escapeHtml(entry.smsPreview)}</p>
+          <div class="flex gap-2 mt-2 text-xs text-slate-500">
+            <span><i class="fa-solid fa-comment-sms mr-1 text-green-400"></i>SMS sent</span>
+            <span><i class="fa-solid fa-envelope mr-1 text-blue-400"></i>Email sent</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function formatDateTime(iso) {
+      if (!iso) return '';
+      return new Date(iso).toLocaleString('en-CA', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    }
+
+    function getSortedMessageLog() {
+      return [...(getData().messageLog || [])].sort((a, b) => new Date(b.sentAt) - new Date(a.sentAt));
+    }
+
+    function renderAdminDashboard() {
+      const orders = getData().orders;
+      const log = getSortedMessageLog();
+
+      const stats = {
+        total: orders.length,
+        pending: orders.filter(o => o.status === 'Pending Drop-off').length,
+        progress: orders.filter(o => o.status === 'In Progress').length,
+        completed: orders.filter(o => o.status === 'Completed').length,
+        messages: log.length,
+      };
+
+      document.getElementById('dashboard-stats').innerHTML = `
+        <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+          <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Total Orders</p>
+          <p class="text-3xl font-bold text-slate-100">${stats.total}</p>
+        </div>
+        <div class="bg-slate-900/60 border border-yellow-500/20 rounded-xl p-4">
+          <p class="text-yellow-400/80 text-xs uppercase tracking-wide mb-1">Pending Drop-off</p>
+          <p class="text-3xl font-bold text-yellow-400">${stats.pending}</p>
+        </div>
+        <div class="bg-slate-900/60 border border-purple-500/20 rounded-xl p-4">
+          <p class="text-purple-400/80 text-xs uppercase tracking-wide mb-1">In Progress</p>
+          <p class="text-3xl font-bold text-purple-400">${stats.progress}</p>
+        </div>
+        <div class="bg-slate-900/60 border border-green-500/20 rounded-xl p-4">
+          <p class="text-green-400/80 text-xs uppercase tracking-wide mb-1">Completed</p>
+          <p class="text-3xl font-bold text-green-400">${stats.completed}</p>
+        </div>
+      `;
+
+      const quickWrap = document.getElementById('dashboard-quick-actions');
+      if (!orders.length) {
+        quickWrap.innerHTML = `
+          <div class="rounded-xl border border-slate-800 bg-slate-900/40 p-6 text-center text-slate-500">
+            <i class="fa-solid fa-inbox text-3xl mb-3 text-slate-700"></i>
+            <p class="mb-3">No orders yet. Submit one from the public site or load demo data.</p>
+            <button type="button" id="load-demo-inline-btn" class="text-sm font-semibold px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white transition">
+              <i class="fa-solid fa-flask mr-1"></i> Load Demo Data
+            </button>
+          </div>
+        `;
+        document.getElementById('load-demo-inline-btn')?.addEventListener('click', seedDemoOrders);
+      } else {
+        const recent = [...orders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 4);
+        quickWrap.innerHTML = recent.map(o => `
+          <div class="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+              <div>
+                <p class="font-bold">${escapeHtml(o.name)} <span class="text-slate-500 font-normal">· ${escapeHtml(o.device)}</span></p>
+                <p class="text-sm text-cyan-400">${escapeHtml(o.serviceName || '—')} · ${formatPrice(o.servicePrice)}</p>
+              </div>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full self-start ${
+                o.status === 'Completed' ? 'bg-green-500/10 text-green-400 border border-green-500/20' :
+                o.status === 'In Progress' ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20' :
+                'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'
+              }">${escapeHtml(o.status)}</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              ${renderMessageActionButtons(o.id)}
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const logWrap = document.getElementById('dashboard-message-log');
+      if (!log.length) {
+        logWrap.innerHTML = `<div class="p-8 text-center text-slate-500 text-sm">No messages sent yet. Send a notification from an order above.</div>`;
+      } else {
+        logWrap.innerHTML = log.slice(0, 8).map(renderMessageLogItem).join('');
+      }
+    }
+
+    function renderAdminMessages() {
+      const grid = document.getElementById('message-templates-grid');
+      grid.innerHTML = Object.entries(MESSAGE_TEMPLATES).map(([key, tpl]) => {
+        const colors = {
+          cyan: 'border-cyan-500/20 hover:border-cyan-500/40',
+          purple: 'border-purple-500/20 hover:border-purple-500/40',
+          green: 'border-green-500/20 hover:border-green-500/40',
+          yellow: 'border-yellow-500/20 hover:border-yellow-500/40',
+          orange: 'border-orange-500/20 hover:border-orange-500/40',
+        };
+        return `
+          <div class="flex items-center gap-4 p-4 rounded-xl border bg-slate-900/40 ${colors[tpl.color] || colors.cyan} transition">
+            <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center shrink-0">
+              <i class="fa-solid ${tpl.icon} text-cyan-400"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="font-bold">${escapeHtml(tpl.label)}</p>
+              <p class="text-xs text-slate-500">${tpl.statusOnSend ? `Sets status: ${tpl.statusOnSend}` : 'No status change'}</p>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const fullLog = document.getElementById('messages-full-log');
+      const log = getSortedMessageLog();
+      if (!log.length) {
+        fullLog.innerHTML = `<div class="p-12 text-center text-slate-500">No messages sent yet.</div>`;
+      } else {
+        fullLog.innerHTML = `<div class="divide-y divide-slate-800">${log.map(renderMessageLogItem).join('')}</div>`;
+      }
+    }
+
+    function openMessageModal(orderId, templateKey) {
+      const order = getData().orders.find(o => o.id === orderId);
+      const tpl = MESSAGE_TEMPLATES[templateKey];
+      if (!order || !tpl) return;
+
+      pendingMessage = { orderId, templateKey };
+
+      document.getElementById('message-modal-title').textContent = tpl.label;
+      document.getElementById('message-modal-subtitle').textContent = `To ${order.name} · ${order.device}`;
+      document.getElementById('modal-sms-to').textContent = order.phone;
+      document.getElementById('modal-email-to').textContent = order.email;
+      document.getElementById('modal-email-subject').textContent = tpl.emailSubject(order);
+      document.getElementById('modal-sms-preview').textContent = tpl.sms(order);
+      document.getElementById('modal-email-preview').textContent = tpl.email(order);
+
+      document.querySelectorAll('.message-tab-btn').forEach(btn => {
+        const isSms = btn.dataset.msgTab === 'sms';
+        btn.classList.toggle('bg-cyan-500/10', isSms);
+        btn.classList.toggle('text-cyan-400', isSms);
+        btn.classList.toggle('text-slate-400', !isSms);
+      });
+      document.getElementById('message-tab-sms').classList.remove('hidden');
+      document.getElementById('message-tab-email').classList.add('hidden');
+
+      document.getElementById('message-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMessageModal() {
+      document.getElementById('message-modal').classList.add('hidden');
+      document.body.style.overflow = '';
+      pendingMessage = { orderId: null, templateKey: null };
+    }
+
+    function sendPendingMessage() {
+      const { orderId, templateKey } = pendingMessage;
+      const order = getData().orders.find(o => o.id === orderId);
+      const tpl = MESSAGE_TEMPLATES[templateKey];
+      if (!order || !tpl) return;
+
+      const smsPreview = tpl.sms(order);
+      const entry = {
+        id: generateId(),
+        orderId,
+        customerName: order.name,
+        templateKey,
+        templateLabel: tpl.label,
+        smsPreview,
+        sentAt: new Date().toISOString(),
+      };
+
+      if (!order.messages) order.messages = [];
+      order.messages.push(entry);
+      if (!getData().messageLog) getData().messageLog = [];
+      getData().messageLog.push(entry);
+
+      if (tpl.statusOnSend) {
+        order.status = tpl.statusOnSend;
+      }
+
+      saveData();
+      closeMessageModal();
+
+      showToast(`Simulated: SMS sent to ${order.phone} via Twilio · Email sent to ${order.email} via Resend`, 'info');
+
+      renderAdminDashboard();
+      renderAdminOrders();
+      renderAdminMessages();
+    }
+
+    function seedDemoOrders() {
+      let added = false;
+
+      if (getData().orders.length === 0) {
+        const now = Date.now();
+        DEMO_ORDERS.forEach((demo, i) => {
+          getData().orders.push({
+            id: generateId(),
+            ...demo,
+            messages: [],
+            createdAt: new Date(now - i * 86400000 * 2).toISOString(),
+          });
+        });
+        added = true;
+      }
+
+      if (!getData().reviews.some(r => r.id?.startsWith('demo-review-'))) {
+        getData().reviews.push(...getDemoReviewObjects());
+        added = true;
+      }
+
+      if (!added) {
+        showToast('Demo data already loaded. Clear localStorage to reload.', 'info');
+        return;
+      }
+
+      saveData();
+      showToast('Demo orders and reviews loaded!', 'success');
+      renderAdminDashboard();
+      renderAdminOrders();
+      renderApprovedReviews();
+      renderAdminReviews();
+    }
+
+    function initAdminMessaging() {
+      document.getElementById('load-demo-orders-btn')?.addEventListener('click', seedDemoOrders);
+
+      document.getElementById('message-modal-send').addEventListener('click', sendPendingMessage);
+
+      document.querySelectorAll('[data-close-modal]').forEach(el => {
+        el.addEventListener('click', closeMessageModal);
+      });
+
+      document.querySelectorAll('.message-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tab = btn.dataset.msgTab;
+          document.querySelectorAll('.message-tab-btn').forEach(b => {
+            const active = b.dataset.msgTab === tab;
+            b.classList.toggle('bg-cyan-500/10', active);
+            b.classList.toggle('text-cyan-400', active);
+            b.classList.toggle('text-slate-400', !active);
+          });
+          document.getElementById('message-tab-sms').classList.toggle('hidden', tab !== 'sms');
+          document.getElementById('message-tab-email').classList.toggle('hidden', tab !== 'email');
+        });
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !document.getElementById('message-modal').classList.contains('hidden')) {
+          closeMessageModal();
+        }
+      });
+
+      document.getElementById('admin-view').addEventListener('click', (e) => {
+        const msgBtn = e.target.closest('.send-msg-btn');
+        if (msgBtn) {
+          openMessageModal(msgBtn.dataset.orderId, msgBtn.dataset.template);
+        }
+      });
+    }
+
+    function renderAdminOrders() {
+      const wrap = document.getElementById('orders-table-wrap');
+      const orders = [...getData().orders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+      if (!orders.length) {
+        wrap.innerHTML = `
+          <div class="p-12 text-center text-slate-500">
+            <i class="fa-solid fa-inbox text-4xl mb-4 text-slate-700"></i>
+            <p>No orders yet. They'll appear here when customers submit the booking form.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const statusOptions = ORDER_STATUSES.map(s =>
+        `<option value="${s}">${s}</option>`
+      ).join('');
+
+      wrap.innerHTML = `
+        <!-- Desktop Table -->
+        <table class="w-full text-sm hidden lg:table">
+          <thead class="bg-slate-900 text-slate-400 uppercase text-xs tracking-wider">
+            <tr>
+              <th class="px-4 py-3 text-left">Customer</th>
+              <th class="px-4 py-3 text-left">Service</th>
+              <th class="px-4 py-3 text-left">Device</th>
+              <th class="px-4 py-3 text-left">Status</th>
+              <th class="px-4 py-3 text-left">Send Message</th>
+              <th class="px-4 py-3 text-left">Date</th>
+            </tr>
+          </thead>
+          <tbody id="orders-tbody" class="divide-y divide-slate-800">
+            ${orders.map(o => `
+              <tr class="hover:bg-slate-900/50 transition align-top" data-order-id="${o.id}">
+                <td class="px-4 py-3">
+                  <p class="font-medium">${escapeHtml(o.name)}</p>
+                  <p class="text-xs text-slate-500">${escapeHtml(o.phone)}</p>
+                  <p class="text-xs text-slate-500">${escapeHtml(o.email)}</p>
+                </td>
+                <td class="px-4 py-3">
+                  <p class="text-slate-300">${escapeHtml(o.serviceName || '—')}</p>
+                  <p class="text-cyan-400 font-semibold">${formatPrice(o.servicePrice)}</p>
+                  <p class="text-slate-500 text-xs mt-1 max-w-xs truncate" title="${escapeHtml(o.issue)}">${escapeHtml(o.issue)}</p>
+                </td>
+                <td class="px-4 py-3">${escapeHtml(o.device)}</td>
+                <td class="px-4 py-3">
+                  <select class="order-status-select bg-slate-800 border border-slate-700 rounded-lg px-2 py-1.5 text-sm focus:ring-2 focus:ring-cyan-500/50 focus:outline-none" data-order-id="${o.id}" data-prev-status="${escapeHtml(o.status)}">
+                    ${ORDER_STATUSES.map(s => `<option value="${s}" ${o.status === s ? 'selected' : ''}>${s}</option>`).join('')}
+                  </select>
+                </td>
+                <td class="px-4 py-3">
+                  <div class="flex flex-wrap gap-1.5 max-w-xs">
+                    ${renderMessageActionButtons(o.id, true)}
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-slate-500 whitespace-nowrap">${formatDate(o.createdAt)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+
+        <!-- Tablet/Mobile Cards -->
+        <div class="lg:hidden divide-y divide-slate-800" id="orders-mobile">
+          ${orders.map(o => `
+            <div class="p-4 space-y-3" data-order-id="${o.id}">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="font-bold">${escapeHtml(o.name)}</p>
+                  <p class="text-slate-500 text-xs">${formatDate(o.createdAt)}</p>
+                </div>
+                <select class="order-status-select bg-slate-800 border border-slate-700 rounded-lg px-2 py-1.5 text-xs focus:ring-2 focus:ring-cyan-500/50 focus:outline-none" data-order-id="${o.id}" data-prev-status="${escapeHtml(o.status)}">
+                  ${ORDER_STATUSES.map(s => `<option value="${s}" ${o.status === s ? 'selected' : ''}>${s}</option>`).join('')}
+                </select>
+              </div>
+              <div class="text-sm bg-slate-900/50 rounded-lg p-3 border border-slate-800">
+                <p class="font-medium text-cyan-400">${escapeHtml(o.serviceName || '—')} <span class="text-slate-400 font-normal">(${formatPrice(o.servicePrice)})</span></p>
+                <p class="text-slate-500 text-xs">${escapeHtml(o.serviceCategory || '')}</p>
+              </div>
+              <div class="grid grid-cols-2 gap-2 text-sm">
+                <div><span class="text-slate-500">Phone:</span> ${escapeHtml(o.phone)}</div>
+                <div><span class="text-slate-500">Email:</span> ${escapeHtml(o.email)}</div>
+              </div>
+              <div class="text-sm"><span class="text-slate-500">Device:</span> ${escapeHtml(o.device)}</div>
+              <div class="text-sm text-slate-400">${escapeHtml(o.issue)}</div>
+              <div>
+                <p class="text-xs text-slate-500 uppercase tracking-wide mb-2">Send Message</p>
+                <div class="flex flex-wrap gap-2">
+                  ${renderMessageActionButtons(o.id)}
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function handleOrderStatusChange(e) {
+      if (!e.target.classList.contains('order-status-select')) return;
+
+      const orderId = e.target.dataset.orderId;
+      const newStatus = e.target.value;
+      const prevStatus = e.target.dataset.prevStatus;
+
+      const order = getData().orders.find(o => o.id === orderId);
+      if (!order) return;
+
+      order.status = newStatus;
+      saveData();
+
+      document.querySelectorAll(`.order-status-select[data-order-id="${orderId}"]`).forEach(sel => {
+        sel.value = newStatus;
+        sel.dataset.prevStatus = newStatus;
+      });
+
+      if (newStatus !== prevStatus && (newStatus === 'In Progress' || newStatus === 'Completed')) {
+        const templateKey = newStatus === 'Completed' ? 'completed' : 'started';
+        const tpl = MESSAGE_TEMPLATES[templateKey];
+        showToast(`Status updated. Tip: send "${tpl.label}" from the message buttons for a full preview.`, 'info');
+      }
+    }
+
+    let editingCategoryId = null;
+    let editingItemId = null;
+    let editingItemCategoryId = null;
+    const pendingDeletes = new Set();
+
+    function populateAdminCategoryDropdowns() {
+      const itemCategorySelect = document.getElementById('item-category');
+      const categories = getData().categories;
+
+      itemCategorySelect.innerHTML = '<option value="">Select category...</option>' +
+        categories.map(c => `<option value="${c.id}">${escapeHtml(c.name)}</option>`).join('');
+
+      if (editingItemCategoryId && categories.some(c => c.id === editingItemCategoryId)) {
+        itemCategorySelect.value = editingItemCategoryId;
+      }
+    }
+
+    function renderAdminServices() {
+      const list = document.getElementById('admin-services-list');
+      const categories = getData().categories;
+
+      populateAdminCategoryDropdowns();
+
+      if (!categories.length) {
+        list.innerHTML = '<p class="text-slate-500 text-center py-8">No categories yet. Add one above.</p>';
+        return;
+      }
+
+      list.innerHTML = categories.map(cat => `
+        <div class="bg-slate-900/60 border border-slate-800 rounded-xl overflow-hidden" data-category-id="${cat.id}">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border-b border-slate-800 bg-slate-900/80">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center shrink-0">
+                <i class="fa-solid ${escapeHtml(cat.icon)} text-cyan-400"></i>
+              </div>
+              <div>
+                <p class="font-bold text-lg">${escapeHtml(cat.name)}</p>
+                <p class="text-slate-400 text-sm">${escapeHtml(cat.description)}</p>
+              </div>
+            </div>
+            <div class="flex gap-2 shrink-0">
+              <button class="edit-category-btn px-3 py-2 rounded-lg border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-cyan-400 transition text-sm font-medium" data-id="${cat.id}">
+                <i class="fa-solid fa-pen mr-1"></i> Edit
+              </button>
+              <button class="delete-category-btn px-3 py-2 rounded-lg border border-slate-700 text-slate-300 hover:bg-red-900/30 hover:text-red-400 hover:border-red-800 transition text-sm font-medium" data-id="${cat.id}">
+                <i class="fa-solid fa-trash mr-1"></i> Delete
+              </button>
+            </div>
+          </div>
+          <ul class="divide-y divide-slate-800/80">
+            ${(cat.items || []).length ? (cat.items || []).map(item => `
+              <li class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-4 py-3">
+                <span class="text-slate-200">${escapeHtml(item.name)}</span>
+                <div class="flex items-center gap-3 shrink-0">
+                  <span class="font-bold text-cyan-400">${formatPrice(item.price)}</span>
+                  <button class="edit-item-btn px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-medium text-slate-300 hover:bg-slate-800 hover:text-cyan-400 transition" data-category-id="${cat.id}" data-id="${item.id}">
+                    Edit
+                  </button>
+                  <button class="delete-item-btn px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-medium text-red-400 hover:bg-red-900/30 transition" data-category-id="${cat.id}" data-id="${item.id}">
+                    Delete
+                  </button>
+                </div>
+              </li>
+            `).join('') : '<li class="px-4 py-4 text-slate-500 text-sm">No services in this category yet.</li>'}
+          </ul>
+        </div>
+      `).join('');
+    }
+
+    function resetCategoryForm() {
+      editingCategoryId = null;
+      document.getElementById('category-edit-id').value = '';
+      document.getElementById('category-name').value = '';
+      document.getElementById('category-description').value = '';
+      document.getElementById('category-icon').selectedIndex = 0;
+      document.getElementById('category-form-title').textContent = 'Add Category';
+      document.getElementById('category-submit-label').textContent = 'Add Category';
+      document.getElementById('category-cancel-edit').classList.add('hidden');
+    }
+
+    function resetItemForm() {
+      editingItemId = null;
+      editingItemCategoryId = null;
+      document.getElementById('item-edit-id').value = '';
+      document.getElementById('item-edit-category-id').value = '';
+      document.getElementById('item-name').value = '';
+      document.getElementById('item-price').value = '';
+      document.getElementById('item-form-title').textContent = 'Add Service Item';
+      document.getElementById('item-submit-label').textContent = 'Add Service Item';
+      document.getElementById('item-cancel-edit').classList.add('hidden');
+      populateAdminCategoryDropdowns();
+    }
+
+    function initServiceForm() {
+      document.getElementById('category-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('category-name').value.trim();
+        const description = document.getElementById('category-description').value.trim();
+        const icon = document.getElementById('category-icon').value;
+
+        if (!name || !description) {
+          showToast('Please fill in category name and description.', 'error');
+          return;
+        }
+
+        if (editingCategoryId) {
+          const category = getData().categories.find(c => c.id === editingCategoryId);
+          if (category) {
+            category.name = name;
+            category.description = description;
+            category.icon = icon;
+          }
+          showToast('Category updated successfully.');
+        } else {
+          getData().categories.push({
+            id: generateId(),
+            name,
+            description,
+            icon,
+            items: [],
+          });
+          showToast('Category added successfully.');
+        }
+
+        saveData();
+        resetCategoryForm();
+        renderAdminServices();
+        renderPublicServices();
+      });
+
+      document.getElementById('category-cancel-edit').addEventListener('click', resetCategoryForm);
+
+      document.getElementById('item-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const categoryId = document.getElementById('item-category').value;
+        const name = document.getElementById('item-name').value.trim();
+        const priceRaw = document.getElementById('item-price').value.trim();
+        const price = priceRaw === '' ? null : parseFloat(priceRaw);
+
+        if (!categoryId || !name) {
+          showToast('Please select a category and enter a service name.', 'error');
+          return;
+        }
+
+        if (priceRaw !== '' && (Number.isNaN(price) || price < 0)) {
+          showToast('Please enter a valid price or leave blank for Quote.', 'error');
+          return;
+        }
+
+        const category = getData().categories.find(c => c.id === categoryId);
+        if (!category) return;
+        if (!category.items) category.items = [];
+
+        if (editingItemId && editingItemCategoryId) {
+          const oldCategory = getData().categories.find(c => c.id === editingItemCategoryId);
+          if (oldCategory) {
+            const item = oldCategory.items.find(i => i.id === editingItemId);
+            if (item) {
+              if (editingItemCategoryId !== categoryId) {
+                oldCategory.items = oldCategory.items.filter(i => i.id !== editingItemId);
+                category.items.push({ id: editingItemId, name, price });
+              } else {
+                item.name = name;
+                item.price = price;
+              }
+            }
+          }
+          showToast('Service item updated successfully.');
+        } else {
+          category.items.push({ id: generateId(), name, price });
+          showToast('Service item added successfully.');
+        }
+
+        saveData();
+        resetItemForm();
+        renderAdminServices();
+        renderPublicServices();
+      });
+
+      document.getElementById('item-cancel-edit').addEventListener('click', resetItemForm);
+
+      document.getElementById('admin-services-list').addEventListener('click', (e) => {
+        const editCategoryBtn = e.target.closest('.edit-category-btn');
+        const deleteCategoryBtn = e.target.closest('.delete-category-btn');
+        const editItemBtn = e.target.closest('.edit-item-btn');
+        const deleteItemBtn = e.target.closest('.delete-item-btn');
+
+        if (editCategoryBtn) {
+          const id = editCategoryBtn.dataset.id;
+          const category = getData().categories.find(c => c.id === id);
+          if (!category) return;
+
+          editingCategoryId = id;
+          document.getElementById('category-edit-id').value = id;
+          document.getElementById('category-name').value = category.name;
+          document.getElementById('category-description').value = category.description;
+          document.getElementById('category-icon').value = category.icon;
+          document.getElementById('category-form-title').textContent = 'Edit Category';
+          document.getElementById('category-submit-label').textContent = 'Save Category';
+          document.getElementById('category-cancel-edit').classList.remove('hidden');
+          document.getElementById('category-name').focus();
+        }
+
+        if (deleteCategoryBtn) {
+          const id = deleteCategoryBtn.dataset.id;
+          const key = 'cat-' + id;
+          if (pendingDeletes.has(key)) {
+            getData().categories = getData().categories.filter(c => c.id !== id);
+            saveData();
+            pendingDeletes.delete(key);
+            showToast('Category deleted.');
+            renderAdminServices();
+            renderPublicServices();
+          } else {
+            pendingDeletes.add(key);
+            deleteCategoryBtn.classList.add('btn-delete-confirm');
+            deleteCategoryBtn.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Confirm';
+            showToast('Click Delete again to confirm. All items in this category will be removed.', 'info');
+            setTimeout(() => {
+              if (pendingDeletes.has(key)) {
+                pendingDeletes.delete(key);
+                deleteCategoryBtn.classList.remove('btn-delete-confirm');
+                deleteCategoryBtn.innerHTML = '<i class="fa-solid fa-trash mr-1"></i> Delete';
+              }
+            }, 3000);
+          }
+        }
+
+        if (editItemBtn) {
+          const categoryId = editItemBtn.dataset.categoryId;
+          const itemId = editItemBtn.dataset.id;
+          const category = getData().categories.find(c => c.id === categoryId);
+          const item = category?.items.find(i => i.id === itemId);
+          if (!item) return;
+
+          editingItemId = itemId;
+          editingItemCategoryId = categoryId;
+          document.getElementById('item-edit-id').value = itemId;
+          document.getElementById('item-edit-category-id').value = categoryId;
+          document.getElementById('item-category').value = categoryId;
+          document.getElementById('item-name').value = item.name;
+          document.getElementById('item-price').value = item.price === null ? '' : item.price;
+          document.getElementById('item-form-title').textContent = 'Edit Service Item';
+          document.getElementById('item-submit-label').textContent = 'Save Item';
+          document.getElementById('item-cancel-edit').classList.remove('hidden');
+          document.getElementById('item-name').focus();
+        }
+
+        if (deleteItemBtn) {
+          const categoryId = deleteItemBtn.dataset.categoryId;
+          const itemId = deleteItemBtn.dataset.id;
+          const key = 'item-' + categoryId + '-' + itemId;
+
+          if (pendingDeletes.has(key)) {
+            const category = getData().categories.find(c => c.id === categoryId);
+            if (category) {
+              category.items = category.items.filter(i => i.id !== itemId);
+            }
+            saveData();
+            pendingDeletes.delete(key);
+            showToast('Service item deleted.');
+            renderAdminServices();
+            renderPublicServices();
+          } else {
+            pendingDeletes.add(key);
+            deleteItemBtn.classList.add('btn-delete-confirm');
+            deleteItemBtn.textContent = 'Confirm';
+            showToast('Click Delete again to confirm.', 'info');
+            setTimeout(() => {
+              if (pendingDeletes.has(key)) {
+                pendingDeletes.delete(key);
+                deleteItemBtn.classList.remove('btn-delete-confirm');
+                deleteItemBtn.textContent = 'Delete';
+              }
+            }, 3000);
+          }
+        }
+      });
+    }
+
+    function renderAdminReviews() {
+      const wrap = document.getElementById('admin-reviews-table-wrap');
+      const reviews = [...getData().reviews].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+      if (!reviews.length) {
+        wrap.innerHTML = `
+          <div class="p-12 text-center text-slate-500">
+            <i class="fa-solid fa-star text-4xl mb-4 text-slate-700"></i>
+            <p>No reviews submitted yet.</p>
+          </div>
+        `;
+        return;
+      }
+
+      wrap.innerHTML = `
+        <table class="w-full text-sm hidden sm:table">
+          <thead class="bg-slate-900 text-slate-400 uppercase text-xs tracking-wider">
+            <tr>
+              <th class="px-4 py-3 text-left">Author</th>
+              <th class="px-4 py-3 text-left">Rating</th>
+              <th class="px-4 py-3 text-left">Review</th>
+              <th class="px-4 py-3 text-left">Status</th>
+              <th class="px-4 py-3 text-left">Date</th>
+              <th class="px-4 py-3 text-left">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800">
+            ${reviews.map(r => `
+              <tr class="hover:bg-slate-900/50 transition">
+                <td class="px-4 py-3 font-medium">${escapeHtml(r.author)}</td>
+                <td class="px-4 py-3"><span class="flex gap-0.5 text-xs">${renderStars(r.rating)}</span></td>
+                <td class="px-4 py-3 text-slate-400 max-w-xs truncate" title="${escapeHtml(r.text)}">${escapeHtml(r.text)}</td>
+                <td class="px-4 py-3">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold ${r.approved ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'}">
+                    ${r.approved ? 'Approved' : 'Hidden'}
+                  </span>
+                </td>
+                <td class="px-4 py-3 text-slate-500 whitespace-nowrap">${formatDate(r.createdAt)}</td>
+                <td class="px-4 py-3">
+                  <div class="flex gap-2">
+                    <button class="toggle-review-btn px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-medium hover:bg-slate-800 transition ${r.approved ? 'text-yellow-400' : 'text-green-400'}" data-id="${r.id}">
+                      ${r.approved ? 'Hide' : 'Approve'}
+                    </button>
+                    <button class="delete-review-btn px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-medium text-red-400 hover:bg-red-900/30 hover:border-red-800 transition" data-id="${r.id}">
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+
+        <div class="sm:hidden divide-y divide-slate-800">
+          ${reviews.map(r => `
+            <div class="p-4 space-y-3">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="font-bold">${escapeHtml(r.author)}</p>
+                  <div class="flex gap-0.5 text-xs mt-1">${renderStars(r.rating)}</div>
+                </div>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold ${r.approved ? 'bg-green-500/10 text-green-400' : 'bg-yellow-500/10 text-yellow-400'}">
+                  ${r.approved ? 'Approved' : 'Hidden'}
+                </span>
+              </div>
+              <p class="text-slate-400 text-sm">${escapeHtml(r.text)}</p>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500 text-xs">${formatDate(r.createdAt)}</span>
+                <div class="flex gap-2">
+                  <button class="toggle-review-btn px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-medium ${r.approved ? 'text-yellow-400' : 'text-green-400'}" data-id="${r.id}">
+                    ${r.approved ? 'Hide' : 'Approve'}
+                  </button>
+                  <button class="delete-review-btn px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-medium text-red-400" data-id="${r.id}">
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    const pendingReviewDeletes = new Set();
+
+    function initAdminReviews() {
+      document.getElementById('admin-reviews-table-wrap').addEventListener('click', (e) => {
+        const toggleBtn = e.target.closest('.toggle-review-btn');
+        const deleteBtn = e.target.closest('.delete-review-btn');
+
+        if (toggleBtn) {
+          const id = toggleBtn.dataset.id;
+          const review = getData().reviews.find(r => r.id === id);
+          if (!review) return;
+
+          review.approved = !review.approved;
+          saveData();
+          showToast(review.approved ? 'Review approved and now visible on site.' : 'Review hidden from public site.');
+          renderAdminReviews();
+          renderApprovedReviews();
+        }
+
+        if (deleteBtn) {
+          const id = deleteBtn.dataset.id;
+          if (pendingReviewDeletes.has(id)) {
+            getData().reviews = getData().reviews.filter(r => r.id !== id);
+            saveData();
+            pendingReviewDeletes.delete(id);
+            showToast('Review deleted.');
+            renderAdminReviews();
+            renderApprovedReviews();
+          } else {
+            pendingReviewDeletes.add(id);
+            deleteBtn.classList.add('btn-delete-confirm');
+            deleteBtn.textContent = 'Confirm';
+            showToast('Click Delete again to confirm.', 'info');
+            setTimeout(() => {
+              if (pendingReviewDeletes.has(id)) {
+                pendingReviewDeletes.delete(id);
+                deleteBtn.classList.remove('btn-delete-confirm');
+                deleteBtn.textContent = 'Delete';
+              }
+            }, 3000);
+          }
+        }
+      });
+    }
+
+    // ============================================================
+    // 8. MOBILE NAV & INIT
+    // ============================================================
+    function initMobileNav() {
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('menu-icon-open');
+      const iconClose = document.getElementById('menu-icon-close');
+
+      menuBtn.addEventListener('click', () => {
+        const isOpen = !menu.classList.contains('hidden');
+        menu.classList.toggle('hidden', isOpen);
+        iconOpen.classList.toggle('hidden', !isOpen);
+        iconClose.classList.toggle('hidden', isOpen);
+      });
+
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          iconOpen.classList.remove('hidden');
+          iconClose.classList.add('hidden');
+        });
+      });
+    }
+
+    function initAdminNav() {
+      document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchAdminTab(btn.dataset.adminTab));
+      });
+
+      document.getElementById('back-to-site').addEventListener('click', () => showView('public'));
+      document.querySelectorAll('.admin-login-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.getElementById('mobile-menu')?.classList.add('hidden');
+          document.getElementById('menu-icon-open')?.classList.remove('hidden');
+          document.getElementById('menu-icon-close')?.classList.add('hidden');
+          showView('admin');
+        });
+      });
+      document.getElementById('admin-menu-btn').addEventListener('click', openAdminSidebar);
+      document.getElementById('admin-overlay').addEventListener('click', closeAdminSidebar);
+
+      document.getElementById('orders-table-wrap').addEventListener('change', handleOrderStatusChange);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadData();
+      document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+      renderPublicServices();
+      renderBookingCategoryOptions();
+      renderApprovedReviews();
+      initBookingForm();
+      initReviewForm();
+      initServiceForm();
+      initServiceAccordions();
+      initAdminMessaging();
+      initAdminReviews();
+      initMobileNav();
+      initAdminNav();
+
+      showView('public');
+    });
+  </script>
+</body>
+</html>
