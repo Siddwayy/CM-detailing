@@ -1221,12 +1221,9 @@
         return;
       }
 
-      const openFirstByDefault = expandedCategoryIds.size === 0;
-
-      grid.innerHTML = categories.map((cat, index) => {
+      grid.innerHTML = categories.map((cat) => {
         const itemCount = (cat.items || []).length;
-        const isOpen = expandedCategoryIds.has(cat.id) || (openFirstByDefault && index === 0);
-        if (isOpen) expandedCategoryIds.add(cat.id);
+        const isOpen = expandedCategoryIds.has(cat.id);
 
         return `
         <div class="service-accordion bg-slate-900/80 border border-slate-800 rounded-xl overflow-hidden ${isOpen ? 'is-open' : ''}" data-category-id="${cat.id}">
